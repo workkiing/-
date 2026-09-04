@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЧЕБУРОКЕТ</title>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        /* Нулевая страница */
+        #intro {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #intro h1 {
+            font-size: 32px;
+            color: #ffa31a;
+            text-align: center;
+            margin: 0 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Основной контейнер */
+        #slides {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Слайд 1 — Чебурек */
+        #slide1 {
+            background: #000;
+            text-align: center;
+        }
+
+        #cheburek {
+            width: 260px;
+            height: auto;
+            margin-top: 40px;
+            animation: float 3s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
+        }
+
+        #slide1 h2 {
+            color: #ffa31a;
+            margin-top: 20px;
+            font-size: 28px;
+        }
+
+        #slide1 p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Слайд 2 — Меню */
+        #slide2 {
+            background: #111;
+        }
+
+        .menu-block {
+            margin-bottom: 30px;
+        }
+
+        .menu-title {
+            font-size: 26px;
+            color: #ffa31a;
+            margin-bottom: 10px;
+        }
+
+        .menu-item {
+            font-size: 18px;
+            margin: 6px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding-bottom: 4px;
+        }
+
+        /* Слайд 3 — История */
+        #slide3 {
+            background: #000;
+        }
+
+        #slide3 h2 {
+            color: #ffa31a;
+            font-size: 28px;
+        }
+
+        #slide3 p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+
+        /* Слайд 4 — Контакты */
+        #slide4 {
+            background: #111;
+            text-align: center;
+        }
+
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 15px auto;
+            padding: 15px;
+            background: #ffa31a;
+            color: #000;
+            font-size: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Нулевая страница -->
+    <div id="intro" onclick="startSite()">
+        <h1>Время познакомиться и попробовать самые вкусные чебуреки</h1>
+    </div>
+
+    <!-- Основные слайды -->
+    <div id="slides">
+
+        <!-- Слайд 1 -->
+        <div class="slide" id="slide1">
+            <h2>ЧЕБУРОКЕТ</h2>
+            <img id="cheburek" src="img/placeholder-cheburek.png" alt="Чебурек" onclick="goToDelivery()">
+            <p>Попробуй меня</p>
+        </div>
+
+        <!-- Слайд 2 — Меню -->
+        <div class="slide" id="slide2">
+            <div class="menu-block">
+                <div class="menu-title">ЧЕБУРЕКИ</div>
+                <div class="menu-item"><span>Курица</span><span>S — 73₽ / XL — 129₽</span></div>
+                <div class="menu-item"><span>Курица-говядина</span><span>S — 89₽ / XL — 149₽</span></div>
+                <div class="menu-item"><span>С адыгейским сыром</span><span>S — 89₽ / XL — 139₽</span></div>
+                <div class="menu-item"><span>Мраморная говядина</span><span>S — 139₽</span></div>
+                <div class="menu-item"><span>Ветчина и моцарелла</span><span>XL — 149₽</span></div>
+                <div class="menu-item"><span>Банан и нутелла</span><span>XL — 165₽</span></div>
+            </div>
+
+            <div class="menu-block">
+                <div class="menu-title">ПОНЧИКИ</div>
+                <div class="menu-item"><span>1 шт.</span><span>39₽</span></div>
+                <div class="menu-item"><span>3 шт.</span><span>109₽</span></div>
+                <div class="menu-item"><span>6 шт.</span><span>199₽</span></div>
+                <div class="menu-item"><span>12 шт.</span><span>359₽</span></div>
+            </div>
+
+            <div class="menu-block">
+                <div class="menu-title">ХВОРОСТ</div>
+                <div class="menu-item"><span>1 шт.</span><span>99₽</span></div>
+            </div>
+
+            <div class="menu-block">
+                <div class="menu-title">ДОНАТЫ</div>
+                <div class="menu-item"><span>1 шт.</span><span>139₽</span></div>
+            </div>
+
+            <div class="menu-block">
+                <div class="menu-title">ЛИМОНАДЫ</div>
+                <div class="menu-item"><span>Лаванда-Лесные ягоды</span><span>200₽</span></div>
+                <div class="menu-item"><span>Фейхоа-Мохито</span><span>200₽</span></div>
+                <div class="menu-item"><span>Манго-Маракуйя</span><span>200₽</span></div>
+            </div>
+        </div>
+
+        <!-- Слайд 3 — История -->
+        <div class="slide" id="slide3">
+            <h2>История создания</h2>
+            <p>
+                Здесь будет история создания кафе, фото хозяина, рассказ о том, как появилась идея,
+                почему выбрана концепция «ЧЕБУРОКЕТ» и что делает эти чебуреки особенными.
+            </p>
+        </div>
+
+        <!-- Слайд 4 — Контакты -->
+        <div class="slide" id="slide4">
+            <h2 style="color:#ffa31a;">Контакты</h2>
+            <a class="btn" href="tel:+70000000000">Позвонить</a>
+            <a class="btn" href="https://wa.me/70000000000">Написать в WhatsApp</a>
+            <p style="margin-top:20px; color:#aaa;">© ЧЕБУРОКЕТ</p>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function startSite() {
+            document.getElementById("intro").style.display = "none";
+        }
+
+        function goToDelivery() {
+            window.location.href = "https://yandex.ru"; // заменишь на свою ссылку
+        }
+
+        // свайп для телефона
+        let startX = 0;
+        document.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+        document.addEventListener("touchend", e => {
+            let endX = e.changedTouches[0].clientX;
+            if (endX < startX - 50) nextSlide();
+            if (endX > startX + 50) prevSlide();
+        });
+
+        function nextSlide() {
+            if (currentSlide < 3) currentSlide++;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) currentSlide--;
+            updateSlides();
+        }
+
+        function updateSlides() {
+            document.getElementById("slides").style.transform =
+                `translateX(-${currentSlide * 100}vw)`;
+        }
+    </script>
+
+</body>
+</html>
