@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ЧЕБУРОКЕТ — вкус, который знакомится с тобой</title>
 
@@ -25,8 +25,8 @@ body{
 }
 
 :root{
-  --o:#ff6a00;
-  --o2:#ff8a00;
+  --orange:#ff6a00;
+  --orange2:#ff8a00;
   --bg:#1d1d1d;
   --card:#292929;
 }
@@ -46,17 +46,13 @@ button{
   font:inherit;
 }
 
-/* =========================
-   ОБЩЕЕ
-========================= */
+/* ==================================================
+   ОБЩИЕ ЭЛЕМЕНТЫ
+================================================== */
 
 .container{
   width:min(1120px,92%);
   margin:auto;
-}
-
-.orange{
-  color:var(--o);
 }
 
 .spark{
@@ -64,7 +60,7 @@ button{
   color:#fff;
   font-size:24px;
   opacity:.8;
-  animation:tw 2.2s infinite alternate;
+  animation:twinkle 2.2s infinite alternate;
   pointer-events:none;
 }
 
@@ -91,7 +87,7 @@ button{
   animation-delay:1.2s;
 }
 
-@keyframes tw{
+@keyframes twinkle{
   from{
     transform:scale(.6);
     opacity:.25;
@@ -102,9 +98,41 @@ button{
   }
 }
 
-/* =========================
-   ПЕРВАЯ ЗАСТАВКА
-========================= */
+/* ==================================================
+   ЛОГОТИП
+================================================== */
+
+.site-logo{
+  position:absolute;
+  top:22px;
+  left:5%;
+  width:62px;
+  height:62px;
+  object-fit:cover;
+  border-radius:12px;
+  z-index:30;
+  box-shadow:0 8px 25px #0008;
+  border:1px solid #444;
+  background:#181818;
+}
+
+.logo-intro{
+  position:absolute;
+  top:22px;
+  left:5%;
+  width:62px;
+  height:62px;
+  object-fit:cover;
+  border-radius:12px;
+  z-index:30;
+  box-shadow:0 8px 25px #0008;
+  border:1px solid #444;
+  background:#181818;
+}
+
+/* ==================================================
+   НУЛЕВОЙ СЛАЙД
+================================================== */
 
 #intro{
   display:flex;
@@ -112,15 +140,17 @@ button{
   justify-content:center;
   text-align:center;
   background:
-    radial-gradient(circle,#303030 0,#1d1d1d 58%);
+    radial-gradient(circle at center,#303030 0,#1d1d1d 58%);
 }
 
 .intro{
   position:relative;
   z-index:2;
+  width:92%;
+  max-width:900px;
 }
 
-.logo{
+.intro-logo-text{
   font-size:clamp(50px,10vw,105px);
   font-weight:1000;
   font-style:italic;
@@ -128,31 +158,33 @@ button{
   line-height:.9;
 }
 
-.logo b{
+.intro-logo-text b{
   color:#fff;
 }
 
-.logo span{
-  color:var(--o);
+.intro-logo-text span{
+  color:var(--orange);
 }
 
 .line{
   height:2px;
   width:280px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--o),
-    #fff,
-    transparent
-  );
+  max-width:80%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--orange),
+      #fff,
+      transparent
+    );
   margin:22px auto;
 }
 
 .kicker{
   font-weight:900;
   letter-spacing:5px;
-  color:var(--o);
+  color:var(--orange);
   text-transform:uppercase;
 }
 
@@ -167,7 +199,9 @@ button{
   margin-bottom:32px;
 }
 
-/* Кнопка */
+/* ==================================================
+   КНОПКА ТЕБЕ СЮДА
+================================================== */
 
 .enter-wrap{
   position:relative;
@@ -176,17 +210,16 @@ button{
 
 .enter{
   border:0;
-  background:var(--o);
+  background:var(--orange);
   color:#111;
   font-weight:1000;
   letter-spacing:2px;
-  padding:18px 30px;
+  padding:18px 32px;
   cursor:pointer;
   position:relative;
   overflow:hidden;
   transition:.2s;
   box-shadow:0 0 30px #ff6a0030;
-
   animation:buttonTap 2.2s ease-in-out infinite;
 }
 
@@ -217,6 +250,7 @@ button{
 }
 
 @keyframes buttonTap{
+
   0%,55%,100%{
     transform:scale(1);
     box-shadow:0 0 30px #ff6a0030;
@@ -233,7 +267,7 @@ button{
   }
 }
 
-/* Анимированный палец */
+/* Палец */
 
 .tap-finger{
   position:absolute;
@@ -294,14 +328,14 @@ button{
   }
 }
 
-/* =========================
+/* ==================================================
    ПЕРЕХОД
-========================= */
+================================================== */
 
 #transition{
   position:fixed;
   inset:0;
-  background:var(--o);
+  background:var(--orange);
   z-index:100;
   transform:translateY(100%);
   transition:.75s cubic-bezier(.77,0,.18,1);
@@ -316,31 +350,20 @@ button{
   transform:translateY(-100%);
 }
 
-/* =========================
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 .header{
   position:absolute;
   top:0;
   left:0;
   right:0;
-  padding:24px 5%;
+  padding:22px 5%;
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-end;
   align-items:center;
   z-index:20;
-}
-
-.small-logo{
-  font-size:25px;
-  font-weight:1000;
-  font-style:italic;
-  letter-spacing:-2px;
-}
-
-.small-logo span{
-  color:var(--o);
 }
 
 .music{
@@ -351,11 +374,17 @@ button{
   background:#222;
   color:#fff;
   cursor:pointer;
+  transition:.3s;
 }
 
-/* =========================
+.music:hover{
+  border-color:var(--orange);
+  color:var(--orange);
+}
+
+/* ==================================================
    1 СЛАЙД
-========================= */
+================================================== */
 
 #hero{
   display:flex;
@@ -375,35 +404,36 @@ button{
   grid-template-columns:1fr 1fr;
   align-items:center;
   gap:30px;
+  padding-top:20px;
 }
 
 .hero-text .tag{
-  color:var(--o);
+  color:var(--orange);
   font-weight:1000;
   letter-spacing:5px;
 }
 
 .hero h2{
   font-size:clamp(43px,7vw,82px);
-  line-height:.82;
+  line-height:.84;
   font-weight:1000;
-  margin:14px 0;
+  margin:14px 0 24px;
   text-transform:uppercase;
 }
 
 .hero h2 span{
-  color:var(--o);
+  color:var(--orange);
 }
 
 .hero p{
-  max-width:430px;
+  max-width:450px;
   color:#999;
   line-height:1.7;
 }
 
 .try{
   margin-top:28px;
-  font-size:19px;
+  font-size:18px;
   font-weight:1000;
   text-transform:uppercase;
   display:flex;
@@ -413,17 +443,18 @@ button{
 }
 
 .try span{
-  color:var(--o);
+  color:var(--orange);
 }
 
 .hero-pointer{
   display:inline-block;
-  color:var(--o);
+  color:var(--orange);
   font-size:34px;
   animation:pointerToFood 1s ease-in-out infinite;
 }
 
 @keyframes pointerToFood{
+
   0%,100%{
     transform:translateX(0) scale(1);
   }
@@ -433,7 +464,7 @@ button{
   }
 }
 
-/* Главная фотография */
+/* Главный чебурек */
 
 .hero-food{
   height:560px;
@@ -460,9 +491,9 @@ button{
   height:340px;
   object-fit:cover;
   object-position:center;
-  border-radius:12px;
+  border-radius:14px;
   filter:drop-shadow(0 30px 28px #000);
-  animation:float 3s ease-in-out infinite;
+  animation:floatFood 3s ease-in-out infinite;
   transition:.3s;
 }
 
@@ -473,7 +504,7 @@ button{
     drop-shadow(0 0 30px #ff6a0050);
 }
 
-@keyframes float{
+@keyframes floatFood{
 
   0%,100%{
     transform:translateY(0) rotate(-2deg) scale(1.02);
@@ -508,22 +539,23 @@ button{
 .arrow{
   width:11px;
   height:11px;
-  border-right:2px solid var(--o);
-  border-bottom:2px solid var(--o);
+  border-right:2px solid var(--orange);
+  border-bottom:2px solid var(--orange);
   transform:rotate(45deg);
   margin:10px auto;
   animation:arr 1.2s infinite;
 }
 
 @keyframes arr{
+
   50%{
     transform:rotate(45deg) translate(5px,5px);
   }
 }
 
-/* =========================
+/* ==================================================
    2 СЛАЙД — МЕНЮ
-========================= */
+================================================== */
 
 #menu{
   background:#222;
@@ -536,7 +568,7 @@ button{
 }
 
 .head small{
-  color:var(--o);
+  color:var(--orange);
   font-weight:1000;
   letter-spacing:5px;
 }
@@ -545,11 +577,26 @@ button{
   font-size:clamp(42px,7vw,76px);
   font-weight:1000;
   text-transform:uppercase;
+  line-height:.9;
+  margin-top:10px;
 }
 
 .head h2 span{
-  color:var(--o);
+  color:var(--orange);
 }
+
+/* НОВЫЙ ПОДЗАГОЛОВОК */
+
+.menu-subtitle{
+  margin-top:18px;
+  color:var(--orange);
+  font-size:15px;
+  font-weight:1000;
+  letter-spacing:6px;
+  text-transform:uppercase;
+}
+
+/* Меню */
 
 .menu-grid{
   display:grid;
@@ -558,7 +605,7 @@ button{
   align-items:center;
 }
 
-/* Большая фотография выбранного вкуса */
+/* Большая фотография */
 
 .showcase{
   min-height:500px;
@@ -600,7 +647,7 @@ button{
   height:260px;
   object-fit:cover;
   object-position:center;
-  border-radius:10px;
+  border-radius:12px;
   filter:drop-shadow(0 25px 20px #000);
   transition:.35s;
 }
@@ -620,7 +667,7 @@ button{
 }
 
 .showcase-price{
-  color:var(--o);
+  color:var(--orange);
   font-size:23px;
   font-weight:1000;
   margin-top:10px;
@@ -648,8 +695,8 @@ button{
 
 .card:hover,
 .card.active{
-  background:var(--o);
-  border-color:var(--o);
+  background:var(--orange);
+  border-color:var(--orange);
   color:#111;
   transform:translateX(6px);
 }
@@ -684,9 +731,9 @@ button{
   font-weight:1000;
 }
 
-/* =========================
+/* ==================================================
    КАТЕГОРИИ
-========================= */
+================================================== */
 
 .categories{
   margin-top:48px;
@@ -706,13 +753,13 @@ button{
 
 .cat:hover,
 .cat.active{
-  border-color:var(--o);
+  border-color:var(--orange);
   transform:translateY(-4px);
   box-shadow:0 10px 25px #0005;
 }
 
 .cat h3{
-  color:var(--o);
+  color:var(--orange);
   font-size:16px;
   margin-bottom:8px;
   text-transform:uppercase;
@@ -737,6 +784,7 @@ button{
 }
 
 @keyframes up{
+
   from{
     opacity:0;
     transform:translateY(12px);
@@ -751,7 +799,7 @@ button{
 .panel-title{
   font-size:22px;
   font-weight:1000;
-  color:var(--o);
+  color:var(--orange);
   text-transform:uppercase;
   margin-bottom:18px;
 }
@@ -775,15 +823,15 @@ button{
 }
 
 .item span{
-  color:var(--o);
+  color:var(--orange);
   font-weight:1000;
   display:block;
   margin-top:8px;
 }
 
-/* =========================
+/* ==================================================
    3 СЛАЙД — ХОЗЯИН
-========================= */
+================================================== */
 
 #story{
   display:flex;
@@ -834,7 +882,7 @@ button{
 }
 
 .story small{
-  color:var(--o);
+  color:var(--orange);
   font-weight:1000;
   letter-spacing:5px;
 }
@@ -848,7 +896,7 @@ button{
 }
 
 .story h2 span{
-  color:var(--o);
+  color:var(--orange);
 }
 
 .story p{
@@ -858,16 +906,16 @@ button{
 
 .quote{
   margin-top:25px;
-  border-left:3px solid var(--o);
+  border-left:3px solid var(--orange);
   padding-left:18px;
   font-size:18px;
   font-weight:800;
   line-height:1.5;
 }
 
-/* =========================
+/* ==================================================
    КОНТАКТЫ
-========================= */
+================================================== */
 
 #contacts{
   display:flex;
@@ -883,7 +931,7 @@ button{
 }
 
 .contact small{
-  color:var(--o);
+  color:var(--orange);
   font-weight:1000;
   letter-spacing:5px;
 }
@@ -897,7 +945,7 @@ button{
 }
 
 .contact h2 span{
-  color:var(--o);
+  color:var(--orange);
 }
 
 .contact p{
@@ -923,7 +971,7 @@ button{
 }
 
 .call{
-  background:var(--o);
+  background:var(--orange);
   color:#111;
 }
 
@@ -944,16 +992,29 @@ button{
   letter-spacing:2px;
 }
 
-/* =========================
-   ПЛАНШЕТ / ТЕЛЕФОН
-========================= */
+/* ==================================================
+   АДАПТАЦИЯ
+================================================== */
 
 @media(max-width:800px){
+
+  .site-logo,
+  .logo-intro{
+    width:52px;
+    height:52px;
+    top:17px;
+    left:5%;
+    border-radius:10px;
+  }
+
+  .header{
+    padding:17px 5%;
+  }
 
   .hero{
     grid-template-columns:1fr;
     text-align:center;
-    padding-top:75px;
+    padding-top:90px;
   }
 
   .hero p{
@@ -961,7 +1022,7 @@ button{
   }
 
   .hero h2{
-    font-size:clamp(42px,11vw,65px);
+    font-size:clamp(40px,10vw,65px);
   }
 
   .try{
@@ -1009,12 +1070,20 @@ button{
 
 @media(max-width:480px){
 
-  .logo{
+  .logo-intro,
+  .site-logo{
+    width:46px;
+    height:46px;
+    border-radius:9px;
+  }
+
+  .intro-logo-text{
+    font-size:58px;
     letter-spacing:-4px;
   }
 
   .intro h1{
-    padding:0 15px;
+    padding:0 10px;
   }
 
   .tap-finger{
@@ -1024,7 +1093,7 @@ button{
   }
 
   .hero h2{
-    font-size:48px;
+    font-size:46px;
   }
 
   .hero-food{
@@ -1034,6 +1103,15 @@ button{
   .food-img{
     width:300px;
     height:215px;
+  }
+
+  .try{
+    line-height:1.4;
+  }
+
+  .menu-subtitle{
+    font-size:13px;
+    letter-spacing:4px;
   }
 
   .card{
@@ -1065,21 +1143,41 @@ button{
   .owner{
     height:360px;
   }
+
+  .buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .btn{
+    width:100%;
+    max-width:320px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ПЕРЕХОД -->
+<!-- ==================================================
+     ПЕРЕХОД
+================================================== -->
+
 <div id="transition"></div>
 
 
-<!-- =========================
-     ЗАСТАВКА
-========================= -->
+<!-- ==================================================
+     НУЛЕВОЙ СЛАЙД
+================================================== -->
 
 <section id="intro">
+
+  <!-- КВАДРАТНЫЙ ЛОГОТИП -->
+  <img
+    class="logo-intro"
+    src="logo.jpg"
+    alt="ЧЕБУРОКЕТ"
+  >
 
   <div class="spark s1">✦</div>
   <div class="spark s2">✦</div>
@@ -1088,7 +1186,7 @@ button{
 
   <div class="intro">
 
-    <div class="logo">
+    <div class="intro-logo-text">
       <b>ЧЕБУ</b><span>РОКЕТ</span>
     </div>
 
@@ -1126,249 +1224,184 @@ button{
 </section>
 
 
-<!-- =========================
-     САЙТ
-========================= -->
+<!-- ==================================================
+     ОСНОВНОЙ САЙТ
+================================================== -->
 
 <div id="site" style="display:none">
 
-<header class="header">
 
-  <div class="small-logo">
-    ЧЕБУ<span>РОКЕТ</span>
-  </div>
+  <!-- КВАДРАТНЫЙ ЛОГОТИП НА ВСЕХ СЛАЙДАХ -->
 
-  <button
-    class="music"
-    id="musicBtn"
-    onclick="toggleMusic()"
+  <img
+    class="site-logo"
+    src="logo.jpg"
+    alt="ЧЕБУРОКЕТ"
   >
-    ♪
-  </button>
-
-</header>
 
 
-<!-- =========================
-     1 СЛАЙД
-========================= -->
+  <!-- HEADER -->
 
-<section id="hero">
+  <header class="header">
 
-  <div class="spark s1">✦</div>
-  <div class="spark s2">✦</div>
-  <div class="spark s3">✦</div>
-  <div class="spark s4">✦</div>
-
-  <div class="hero">
-
-    <div class="hero-text">
-
-      <div class="tag">
-        ЧЕБУРОКЕТ
-      </div>
-
-      <h2>
-        ВКУСНЫЙ<br>
-        СОЧНЫЙ<br>
-        <span>ХРУСТЯЩИЙ</span>
-      </h2>
-
-      <p>
-        Горячий, хрустящий и сочный чебурек.
-        Тот самый вкус, с которого начинается
-        знакомство с ЧЕБУРОКЕТ.
-      </p>
-
-      <div class="try">
-        ХОЧЕШЬ ПОПРОБОВАТЬ,
-        <span>ТЕБЕ СЮДА</span>
-        <b class="hero-pointer">➜</b>
-      </div>
-
-    </div>
-
-
-    <!--
-      ГЛАВНЫЙ ЧЕБУРЕК
-
-      ПРИ НАЖАТИИ СРАЗУ ОТКРЫВАЕТСЯ
-      ЯНДЕКС ЕДА
-    -->
-
-    <div
-      class="hero-food"
-      onclick="goToOrder()"
+    <button
+      class="music"
+      id="musicBtn"
+      onclick="toggleMusic()"
     >
+      ♪
+    </button>
 
-      <div class="food-ring"></div>
-
-      <div class="food-glow"></div>
-
-      <img
-        class="food-img"
-        src="cheburek-main.jpg"
-        alt="Главный чебурек ЧЕБУРОКЕТ"
-      >
-
-    </div>
-
-  </div>
+  </header>
 
 
-  <div class="scroll">
-    ЛИСТАЙ
-    <div class="arrow"></div>
-  </div>
+  <!-- ==================================================
+       1 СЛАЙД
+  ================================================== -->
 
-</section>
+  <section id="hero">
 
+    <div class="spark s1">✦</div>
+    <div class="spark s2">✦</div>
+    <div class="spark s3">✦</div>
+    <div class="spark s4">✦</div>
 
-<!-- =========================
-     2 СЛАЙД — МЕНЮ
-========================= -->
-
-<section id="menu">
-
-  <div class="container">
-
-    <div class="head">
-
-      <small>
-        ГЛАВНОЕ
-      </small>
-
-      <h2>
-        НАШЕ <span>МЕНЮ</span>
-      </h2>
-
-    </div>
+    <div class="hero">
 
 
-    <div class="menu-grid">
+      <div class="hero-text">
 
+        <div class="tag">
+          ЧЕБУРОКЕТ
+        </div>
 
-      <!-- БОЛЬШАЯ ФОТОГРАФИЯ -->
+        <h2>
+          ВКУСНЫЙ<br>
+          СОЧНЫЙ<br>
+          <span>ХРУСТЯЩИЙ</span>
+        </h2>
 
-      <div class="showcase">
+        <p>
+          Горячий, хрустящий и сочный чебурек.
+          Тот самый вкус, с которого начинается
+          знакомство с ЧЕБУРОКЕТ.
+        </p>
 
-        <div class="showcase-inner">
+        <div class="try">
 
-          <div class="showcase-img-wrap">
+          ХОЧЕШЬ ПОПРОБОВАТЬ,
+          <span>ТЕБЕ СЮДА</span>
 
-            <img
-              id="showImg"
-              class="showcase-img"
-              src="cheburek-kurica.jpg"
-              alt="Чебурек с курицей"
-            >
-
-          </div>
-
-          <div
-            id="showDesc"
-            class="showcase-desc"
-          >
-            Сочная куриная начинка
-          </div>
-
-          <div
-            id="showName"
-            class="showcase-name"
-          >
-            КУРИЦА
-          </div>
-
-          <div
-            id="showPrice"
-            class="showcase-price"
-          >
-            73 ₽ / 129 ₽
-          </div>
+          <b class="hero-pointer">
+            ➜
+          </b>
 
         </div>
 
       </div>
 
 
-      <!-- СПИСОК ВКУСОВ -->
+      <!-- ГЛАВНЫЙ ЧЕБУРЕК -->
 
-      <div class="cards">
+      <div
+        class="hero-food"
+        onclick="goToOrder()"
+        title="Заказать ЧЕБУРОКЕТ"
+      >
 
+        <div class="food-ring"></div>
 
-        <!-- 1 -->
+        <div class="food-glow"></div>
 
-        <div
-          class="card active"
-          onclick="selectFood(
-            this,
-            'КУРИЦА',
-            'Сочная куриная начинка',
-            '73 ₽ / 129 ₽',
-            'cheburek-kurica.jpg'
-          )"
+        <img
+          class="food-img"
+          src="cheburek-main.jpg"
+          alt="Главный чебурек ЧЕБУРОКЕТ"
         >
 
-          <div>
+      </div>
 
-            <div class="name">
-              КУРИЦА
+    </div>
+
+
+    <div class="scroll">
+
+      ЛИСТАЙ
+
+      <div class="arrow"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================================================
+       2 СЛАЙД — МЕНЮ
+  ================================================== -->
+
+  <section id="menu">
+
+    <div class="container">
+
+
+      <div class="head">
+
+        <small>
+          ГЛАВНОЕ
+        </small>
+
+        <h2>
+          НАШЕ <span>МЕНЮ</span>
+        </h2>
+
+        <!-- НОВАЯ НАДПИСЬ -->
+
+        <div class="menu-subtitle">
+          ЧЕБУРЕКИ
+        </div>
+
+      </div>
+
+
+      <div class="menu-grid">
+
+
+        <!-- БОЛЬШАЯ ФОТОГРАФИЯ -->
+
+        <div class="showcase">
+
+          <div class="showcase-inner">
+
+            <div class="showcase-img-wrap">
+
+              <img
+                id="showImg"
+                class="showcase-img"
+                src="cheburek-kurica.jpg"
+                alt="Чебурек с курицей"
+              >
+
             </div>
 
-            <div class="desc">
+            <div
+              id="showDesc"
+              class="showcase-desc"
+            >
               Сочная куриная начинка
             </div>
 
-          </div>
-
-          <div class="prices">
-
-            <div class="price">
-              M 73 ₽
+            <div
+              id="showName"
+              class="showcase-name"
+            >
+              КУРИЦА
             </div>
 
-            <div class="price">
-              XL 129 ₽
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 2 -->
-
-        <div
-          class="card"
-          onclick="selectFood(
-            this,
-            'КУРИЦА + ГОВЯДИНА',
-            'Курица и сочная говядина',
-            '89 ₽ / 149 ₽',
-            'cheburek-kurica-govyadina.jpg'
-          )"
-        >
-
-          <div>
-
-            <div class="name">
-              КУРИЦА + ГОВЯДИНА
-            </div>
-
-            <div class="desc">
-              Два вида мяса
-            </div>
-
-          </div>
-
-          <div class="prices">
-
-            <div class="price">
-              M 89 ₽
-            </div>
-
-            <div class="price">
-              XL 149 ₽
+            <div
+              id="showPrice"
+              class="showcase-price"
+            >
+              73 ₽ / 129 ₽
             </div>
 
           </div>
@@ -1376,353 +1409,450 @@ button{
         </div>
 
 
-        <!-- 3 -->
+        <!-- 6 ВКУСОВ -->
 
-        <div
-          class="card"
-          onclick="selectFood(
-            this,
-            'АДЫГЕЙСКИЙ СЫР',
-            'Нежная сырная начинка',
-            '89 ₽ / 139 ₽',
-            'cheburek-adygeyskiy-syr.jpg'
-          )"
-        >
+        <div class="cards">
 
-          <div>
 
-            <div class="name">
-              АДЫГЕЙСКИЙ СЫР
+          <!-- КУРИЦА -->
+
+          <div
+            class="card active"
+            onclick="selectFood(
+              this,
+              'КУРИЦА',
+              'Сочная куриная начинка',
+              '73 ₽ / 129 ₽',
+              'cheburek-kurica.jpg'
+            )"
+          >
+
+            <div>
+
+              <div class="name">
+                КУРИЦА
+              </div>
+
+              <div class="desc">
+                Сочная куриная начинка
+              </div>
+
             </div>
 
-            <div class="desc">
-              Нежный сыр
-            </div>
+            <div class="prices">
 
-          </div>
+              <div class="price">
+                M 73 ₽
+              </div>
 
-          <div class="prices">
+              <div class="price">
+                XL 129 ₽
+              </div>
 
-            <div class="price">
-              M 89 ₽
-            </div>
-
-            <div class="price">
-              XL 139 ₽
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 4 -->
-
-        <div
-          class="card"
-          onclick="selectFood(
-            this,
-            'МРАМОРНАЯ ГОВЯДИНА',
-            'Премиальная мясная начинка',
-            '139 ₽ / 179 ₽',
-            'cheburek-mramornaya-govyadina.jpg'
-          )"
-        >
-
-          <div>
-
-            <div class="name">
-              МРАМОРНАЯ ГОВЯДИНА
-            </div>
-
-            <div class="desc">
-              Премиальный вкус
             </div>
 
           </div>
 
-          <div class="prices">
 
-            <div class="price">
-              M 139 ₽
+          <!-- КУРИЦА + ГОВЯДИНА -->
+
+          <div
+            class="card"
+            onclick="selectFood(
+              this,
+              'КУРИЦА + ГОВЯДИНА',
+              'Курица и сочная говядина',
+              '89 ₽ / 149 ₽',
+              'cheburek-kurica-govyadina.jpg'
+            )"
+          >
+
+            <div>
+
+              <div class="name">
+                КУРИЦА + ГОВЯДИНА
+              </div>
+
+              <div class="desc">
+                Два вида мяса
+              </div>
+
             </div>
 
-            <div class="price">
-              XL 179 ₽
-            </div>
+            <div class="prices">
 
-          </div>
+              <div class="price">
+                M 89 ₽
+              </div>
 
-        </div>
+              <div class="price">
+                XL 149 ₽
+              </div>
 
-
-        <!-- 5 -->
-
-        <div
-          class="card"
-          onclick="selectFood(
-            this,
-            'ВЕТЧИНА + МОЦАРЕЛЛА',
-            'Ветчина и тягучая моцарелла',
-            '149 ₽',
-            'cheburek-vetchina-motsarella.jpg'
-          )"
-        >
-
-          <div>
-
-            <div class="name">
-              ВЕТЧИНА + МОЦАРЕЛЛА
-            </div>
-
-            <div class="desc">
-              Горячая моцарелла
-            </div>
-
-          </div>
-
-          <div class="prices">
-
-            <div class="price">
-              149 ₽
             </div>
 
           </div>
 
-        </div>
 
+          <!-- АДЫГЕЙСКИЙ СЫР -->
 
-        <!-- 6 -->
+          <div
+            class="card"
+            onclick="selectFood(
+              this,
+              'АДЫГЕЙСКИЙ СЫР',
+              'Нежная сырная начинка',
+              '89 ₽ / 139 ₽',
+              'cheburek-adygeyskiy-syr.jpg'
+            )"
+          >
 
-        <div
-          class="card"
-          onclick="selectFood(
-            this,
-            'БАНАН + NUTELLA',
-            'Банан и шоколад',
-            '165 ₽',
-            'cheburek-banan-nutella.jpg'
-          )"
-        >
+            <div>
 
-          <div>
+              <div class="name">
+                АДЫГЕЙСКИЙ СЫР
+              </div>
 
-            <div class="name">
-              БАНАН + NUTELLA
+              <div class="desc">
+                Нежный сыр
+              </div>
+
             </div>
 
-            <div class="desc">
-              Сладкий чебурек
+            <div class="prices">
+
+              <div class="price">
+                M 89 ₽
+              </div>
+
+              <div class="price">
+                XL 139 ₽
+              </div>
+
             </div>
 
           </div>
 
-          <div class="prices">
 
-            <div class="price">
-              165 ₽
+          <!-- МРАМОРНАЯ ГОВЯДИНА -->
+
+          <div
+            class="card"
+            onclick="selectFood(
+              this,
+              'МРАМОРНАЯ ГОВЯДИНА',
+              'Премиальная мясная начинка',
+              '139 ₽ / 179 ₽',
+              'cheburek-mramornaya-govyadina.jpg'
+            )"
+          >
+
+            <div>
+
+              <div class="name">
+                МРАМОРНАЯ ГОВЯДИНА
+              </div>
+
+              <div class="desc">
+                Премиальный вкус
+              </div>
+
+            </div>
+
+            <div class="prices">
+
+              <div class="price">
+                M 139 ₽
+              </div>
+
+              <div class="price">
+                XL 179 ₽
+              </div>
+
             </div>
 
           </div>
+
+
+          <!-- ВЕТЧИНА + МОЦАРЕЛЛА -->
+
+          <div
+            class="card"
+            onclick="selectFood(
+              this,
+              'ВЕТЧИНА + МОЦАРЕЛЛА',
+              'Ветчина и тягучая моцарелла',
+              '149 ₽',
+              'cheburek-vetchina-motsarella.jpg'
+            )"
+          >
+
+            <div>
+
+              <div class="name">
+                ВЕТЧИНА + МОЦАРЕЛЛА
+              </div>
+
+              <div class="desc">
+                Горячая моцарелла
+              </div>
+
+            </div>
+
+            <div class="prices">
+
+              <div class="price">
+                149 ₽
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- БАНАН + NUTELLA -->
+
+          <div
+            class="card"
+            onclick="selectFood(
+              this,
+              'БАНАН + NUTELLA',
+              'Банан и шоколад',
+              '165 ₽',
+              'cheburek-banan-nutella.jpg'
+            )"
+          >
+
+            <div>
+
+              <div class="name">
+                БАНАН + NUTELLA
+              </div>
+
+              <div class="desc">
+                Сладкий чебурек
+              </div>
+
+            </div>
+
+            <div class="prices">
+
+              <div class="price">
+                165 ₽
+              </div>
+
+            </div>
+
+          </div>
+
 
         </div>
 
       </div>
 
-    </div>
+
+      <!-- ==================================================
+           ДОПОЛНИТЕЛЬНЫЕ КАТЕГОРИИ
+      ================================================== -->
+
+      <div class="categories">
 
 
-    <!-- =========================
-         КАТЕГОРИИ
-    ========================= -->
+        <!-- ПОНЧИКИ -->
 
-    <div class="categories">
+        <div
+          class="cat"
+          onclick="showCategory(
+            this,
+            'ПОНЧИКИ',
+            '1 шт. — 39 ₽|3 шт. — 109 ₽|6 шт. — 199 ₽'
+          )"
+        >
+
+          <h3>
+            ПОНЧИКИ
+          </h3>
+
+          <p>
+            Горячие и нежные
+          </p>
+
+        </div>
+
+
+        <!-- ХВОРОСТ -->
+
+        <div
+          class="cat"
+          onclick="showCategory(
+            this,
+            'ХВОРОСТ',
+            '1 шт. — 99 ₽|Хрустящий десерт'
+          )"
+        >
+
+          <h3>
+            ХВОРОСТ
+          </h3>
+
+          <p>
+            Хрустящий десерт
+          </p>
+
+        </div>
+
+
+        <!-- ЛИМОНАДЫ -->
+
+        <div
+          class="cat"
+          onclick="showCategory(
+            this,
+            'ЛИМОНАДЫ',
+            'Лаванда — 200 ₽|Лесные ягоды — 200 ₽|Мохито — 200 ₽|Манго-маракуйя — 200 ₽'
+          )"
+        >
+
+          <h3>
+            ЛИМОНАДЫ
+          </h3>
+
+          <p>
+            4 вкуса — выбирай свой
+          </p>
+
+        </div>
+
+
+      </div>
 
 
       <div
-        class="cat"
-        onclick="showCategory(
-          this,
-          'ПОНЧИКИ',
-          '1 шт. — 39 ₽|3 шт. — 109 ₽|6 шт. — 199 ₽'
-        )"
-      >
+        id="categoryPanel"
+        class="category-panel"
+      ></div>
 
-        <h3>
-          ПОНЧИКИ
-        </h3>
-
-        <p>
-          Горячие и нежные
-        </p>
-
-      </div>
-
-
-      <div
-        class="cat"
-        onclick="showCategory(
-          this,
-          'ХВОРОСТ',
-          '1 шт. — 99 ₽|Хрустящий десерт'
-        )"
-      >
-
-        <h3>
-          ХВОРОСТ
-        </h3>
-
-        <p>
-          Хрустящий десерт
-        </p>
-
-      </div>
-
-
-      <div
-        class="cat"
-        onclick="showCategory(
-          this,
-          'ЛИМОНАДЫ',
-          'Лаванда — 200 ₽|Лесные ягоды — 200 ₽|Мохито — 200 ₽|Манго-маракуйя — 200 ₽'
-        )"
-      >
-
-        <h3>
-          ЛИМОНАДЫ
-        </h3>
-
-        <p>
-          4 вкуса — выбирай свой
-        </p>
-
-      </div>
 
     </div>
 
-
-    <div
-      id="categoryPanel"
-      class="category-panel"
-    ></div>
-
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================
-     3 СЛАЙД — ХОЗЯИН
-========================= -->
+  <!-- ==================================================
+       3 СЛАЙД — ХОЗЯИН
+  ================================================== -->
 
-<section id="story">
+  <section id="story">
 
-  <div class="container story">
+    <div class="container story">
 
 
-    <!-- ФОТО ХОЗЯИНА -->
+      <!-- ФОТО ХОЗЯИНА -->
 
-    <div class="owner">
+      <div class="owner">
 
-      <img
-        src="owner.jpg"
-        alt="Хозяин ЧЕБУРОКЕТ"
-      >
+        <img
+          src="owner.jpg"
+          alt="Хозяин ЧЕБУРОКЕТ"
+        >
 
-      <div class="owner-border"></div>
+        <div class="owner-border"></div>
+
+      </div>
+
+
+      <!-- ИСТОРИЯ -->
+
+      <div>
+
+        <small>
+          НАЧАЛО ИСТОРИИ
+        </small>
+
+        <h2>
+          КАК<br>
+          РОДИЛСЯ<br>
+          <span>ЧЕБУРОКЕТ</span>
+        </h2>
+
+        <p>
+          Здесь появится настоящая история создания кафе:
+          как родилась идея, почему именно чебуреки,
+          как создавалась концепция и каким хозяин
+          видел ЧЕБУРОКЕТ с самого начала.
+        </p>
+
+        <div class="quote">
+          «Хотелось создать место, куда приходят
+          не просто поесть, а получить эмоцию».
+        </div>
+
+      </div>
+
 
     </div>
 
+  </section>
 
-    <!-- ИСТОРИЯ -->
 
-    <div>
+  <!-- ==================================================
+       КОНТАКТЫ
+  ================================================== -->
+
+  <section id="contacts">
+
+    <div class="contact">
 
       <small>
-        НАЧАЛО ИСТОРИИ
+        ПОРА ПОПРОБОВАТЬ?
       </small>
 
       <h2>
-        КАК<br>
-        РОДИЛСЯ<br>
+        ЗАКАЖИ<br>
         <span>ЧЕБУРОКЕТ</span>
       </h2>
 
       <p>
-        Здесь появится настоящая история создания кафе:
-        как родилась идея, почему именно чебуреки,
-        как создавалась концепция и каким хозяин
-        видел ЧЕБУРОКЕТ с самого начала.
+        Позвони нам или напиши в WhatsApp —
+        и совсем скоро горячий хрустящий
+        чебурек будет у тебя.
       </p>
 
-      <div class="quote">
-        «Хотелось создать место, куда приходят
-        не просто поесть, а получить эмоцию».
+      <div class="buttons">
+
+        <a
+          class="btn call"
+          href="tel:+70000000000"
+        >
+          ☎ ПОЗВОНИТЬ
+        </a>
+
+        <a
+          class="btn wa"
+          href="https://wa.me/70000000000"
+          target="_blank"
+          rel="noopener"
+        >
+          НАПИСАТЬ В WHATSAPP
+        </a>
+
       </div>
 
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- =========================
-     КОНТАКТЫ
-========================= -->
-
-<section id="contacts">
-
-  <div class="contact">
-
-    <small>
-      ПОРА ПОПРОБОВАТЬ?
-    </small>
-
-    <h2>
-      ЗАКАЖИ<br>
-      <span>ЧЕБУРОКЕТ</span>
-    </h2>
-
-    <p>
-      Позвони нам или напиши в WhatsApp —
-      и совсем скоро горячий хрустящий
-      чебурек будет у тебя.
-    </p>
-
-    <div class="buttons">
-
-      <a
-        class="btn call"
-        href="tel:+70000000000"
-      >
-        ☎ ПОЗВОНИТЬ
-      </a>
-
-      <a
-        class="btn wa"
-        href="https://wa.me/70000000000"
-        target="_blank"
-      >
-        НАПИСАТЬ В WHATSAPP
-      </a>
-
+    <div class="footer">
+      ЧЕБУРОКЕТ © 2026
     </div>
 
-  </div>
+  </section>
 
-  <div class="footer">
-    ЧЕБУРОКЕТ © 2026
-  </div>
-
-</section>
 
 </div>
 
 
-<!-- =========================
+<!-- ==================================================
      МУЗЫКА
-========================= -->
+================================================== -->
 
 <audio
   id="music"
@@ -1737,9 +1867,9 @@ button{
 
 <script>
 
-/* =========================
-   ОСНОВНЫЕ ЭЛЕМЕНТЫ
-========================= */
+/* ==================================================
+   ЭЛЕМЕНТЫ
+================================================== */
 
 const music =
   document.getElementById('music');
@@ -1757,9 +1887,9 @@ const musicBtn =
   document.getElementById('musicBtn');
 
 
-/* =========================
-   СТРАНИЦА ЗАКАЗА
-========================= */
+/* ==================================================
+   ПЕРЕХОД В ЯНДЕКС ЕДУ
+================================================== */
 
 function goToOrder(){
 
@@ -1769,13 +1899,13 @@ function goToOrder(){
 }
 
 
-/* =========================
+/* ==================================================
    ВХОД НА САЙТ
-========================= */
+================================================== */
 
 function enterSite(){
 
-  music.volume=.35;
+  music.volume = 0.35;
 
   music.play().catch(()=>{});
 
@@ -1783,9 +1913,9 @@ function enterSite(){
 
   setTimeout(()=>{
 
-    intro.style.display='none';
+    intro.style.display = 'none';
 
-    site.style.display='block';
+    site.style.display = 'block';
 
     window.scrollTo(0,0);
 
@@ -1808,9 +1938,9 @@ function enterSite(){
 }
 
 
-/* =========================
+/* ==================================================
    МУЗЫКА
-========================= */
+================================================== */
 
 function toggleMusic(){
 
@@ -1818,22 +1948,22 @@ function toggleMusic(){
 
     music.play();
 
-    musicBtn.textContent='♪';
+    musicBtn.textContent = '♪';
 
   }else{
 
     music.pause();
 
-    musicBtn.textContent='×';
+    musicBtn.textContent = '×';
 
   }
 
 }
 
 
-/* =========================
-   ВЫБОР ЧЕБУРЕКА
-========================= */
+/* ==================================================
+   ВЫБОР ВКУСА ЧЕБУРЕКА
+================================================== */
 
 function selectFood(
   el,
@@ -1845,9 +1975,9 @@ function selectFood(
 
   document
     .querySelectorAll('.card')
-    .forEach(x =>
-      x.classList.remove('active')
-    );
+    .forEach(card=>{
+      card.classList.remove('active');
+    });
 
   el.classList.add('active');
 
@@ -1859,21 +1989,22 @@ function selectFood(
 
   setTimeout(()=>{
 
-    img.src=image;
+    img.src = image;
 
-    img.alt='Чебурек '+name;
+    img.alt =
+      'Чебурек ' + name;
 
     document.getElementById(
       'showName'
-    ).textContent=name;
+    ).textContent = name;
 
     document.getElementById(
       'showDesc'
-    ).textContent=desc;
+    ).textContent = desc;
 
     document.getElementById(
       'showPrice'
-    ).textContent=price;
+    ).textContent = price;
 
     img.style.transform =
       'scale(1) rotate(0)';
@@ -1883,9 +2014,9 @@ function selectFood(
 }
 
 
-/* =========================
-   КАТЕГОРИИ
-========================= */
+/* ==================================================
+   ПОНЧИКИ / ХВОРОСТ / ЛИМОНАДЫ
+================================================== */
 
 function showCategory(
   el,
@@ -1895,9 +2026,9 @@ function showCategory(
 
   document
     .querySelectorAll('.cat')
-    .forEach(x =>
-      x.classList.remove('active')
-    );
+    .forEach(cat=>{
+      cat.classList.remove('active');
+    });
 
   el.classList.add('active');
 
@@ -1915,10 +2046,10 @@ function showCategory(
     '</div>'+
     '<div class="items">'+
 
-    parts.map(x=>{
+    parts.map(item=>{
 
       const parts2 =
-        x.split(' — ');
+        item.split(' — ');
 
       return `
         <div class="item">
