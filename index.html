@@ -3,40 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЧЕБУРОКЕТ</title>
+    <title>ЧЕБУРОКЕТ — Самые вкусные чебуреки</title>
 
     <style>
-        body, html {
+        /* ------------------------------
+           ГЛОБАЛЬНЫЕ СТИЛИ
+        ------------------------------ */
+
+        html, body {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            font-family: Arial, sans-serif;
             background: #000;
+            font-family: Arial, sans-serif;
             color: #fff;
         }
 
-        /* Нулевая страница */
+        * {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ------------------------------
+           НУЛЕВАЯ СТРАНИЦА (INTRO)
+        ------------------------------ */
+
         #intro {
             position: fixed;
             inset: 0;
             background: #000;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
             cursor: pointer;
-            z-index: 10;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .intro-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, #ffa31a33, #000 70%);
+            animation: pulseBg 6s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
         }
 
         #intro h1 {
             font-size: 32px;
             color: #ffa31a;
             text-align: center;
-            margin: 0 20px;
-            animation: fadeIn 2s ease;
+            padding: 0 20px;
+            animation: fadeIn 2s ease forwards;
+            opacity: 0;
         }
 
-        /* Основной контейнер */
+        #intro p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ddd;
+            text-align: center;
+            padding: 0 20px;
+            animation: fadeIn 3s ease forwards;
+            opacity: 0;
+        }
+
+        #intro .enter-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: #ffa31a;
+            color: #000;
+            font-size: 22px;
+            border-radius: 12px;
+            animation: fadeIn 3.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ------------------------------
+           ОСНОВНЫЕ СЛАЙДЫ
+        ------------------------------ */
+
         #slides {
             position: fixed;
             inset: 0;
@@ -48,125 +108,349 @@
             min-width: 100vw;
             height: 100vh;
             padding: 40px;
-            box-sizing: border-box;
         }
 
-        /* Слайд 1 — Чебурек */
+        /* ------------------------------
+           СЛАЙД 1 — АНИМИРОВАННЫЙ ЧЕБУРЕК
+        ------------------------------ */
+
         #slide1 {
             background: #000;
             text-align: center;
-        }
-
-        #cheburek {
-            width: 260px;
-            height: auto;
-            margin-top: 40px;
-            animation: float 3s infinite ease-in-out;
-            cursor: pointer;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
+            position: relative;
         }
 
         #slide1 h2 {
             color: #ffa31a;
-            margin-top: 20px;
-            font-size: 28px;
+            font-size: 42px;
+            margin-top: 10px;
+            letter-spacing: 2px;
         }
 
-        #slide1 p {
-            font-size: 20px;
+        #slide1 .subtitle {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .cheburek-anim {
+            width: 260px;
+            height: 260px;
+            margin: 40px auto 20px auto;
+            background: radial-gradient(circle at center, #ffa31a, #ff7b00);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ffa31a55;
+            animation: floatCheb 3s infinite ease-in-out;
+            position: relative;
+            cursor: pointer;
+        }
+
+        @keyframes floatCheb {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
+            100% { transform: translateY(0); }
+        }
+
+        .cheburek-anim::before {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            border: 3px dashed #fff;
+            inset: 10%;
+            opacity: 0.4;
+        }
+
+        .cheburek-anim::after {
+            content: "🔥";
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 26px;
+        }
+
+        #slide1 .cta-text {
+            font-size: 24px;
             margin-top: 10px;
         }
 
-        /* Слайд 2 — Меню */
+        #slide1 .hint {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #888;
+        }
+
+        /* ------------------------------
+           СЛАЙД 2 — МЕНЮ С АНИМАЦИЯМИ
+        ------------------------------ */
+
         #slide2 {
             background: #111;
+            overflow-y: auto;
+        }
+
+        .menu-header {
+            margin-bottom: 30px;
+        }
+
+        .menu-header h2 {
+            font-size: 34px;
+            color: #ffa31a;
+            margin-bottom: 5px;
+        }
+
+        .menu-header p {
+            font-size: 16px;
+            color: #ccc;
         }
 
         .menu-block {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .menu-title {
             font-size: 26px;
             color: #ffa31a;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         .menu-item {
             font-size: 18px;
-            margin: 6px 0;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #333;
-            padding-bottom: 4px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Слайд 3 — История */
+        .menu-item span:first-child {
+            max-width: 60%;
+        }
+
+        .menu-item span:last-child {
+            color: #fff;
+        }
+
+        .menu-item::before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            width: 22px;
+            height: 22px;
+            background: #ffa31a;
+            border-radius: 50%;
+            transform: translateY(-50%) scale(0);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .menu-item:hover::before {
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+        }
+
+        .menu-item:hover {
+            background: #222;
+        }
+
+        /* ------------------------------
+           СЛАЙД 3 — ИСТОРИЯ
+        ------------------------------ */
+
         #slide3 {
             background: #000;
+            padding: 40px;
         }
 
         #slide3 h2 {
             color: #ffa31a;
-            font-size: 28px;
+            font-size: 32px;
         }
 
-        #slide3 p {
-            font-size: 18px;
-            line-height: 1.5;
+        #slide3 .story-block {
             margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
         }
 
-        /* Слайд 4 — Контакты */
+        .story-photo-placeholder {
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ffa31a, #ff7b00);
+            box-shadow: 0 0 30px #ffa31a55;
+            position: relative;
+        }
+
+        .story-photo-placeholder::after {
+            content: "👨‍🍳";
+            position: absolute;
+            font-size: 48px;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #slide3 .story-text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        /* ------------------------------
+           СЛАЙД 4 — КОНТАКТЫ
+        ------------------------------ */
+
         #slide4 {
             background: #111;
             text-align: center;
+            padding-top: 60px;
+        }
+
+        #slide4 h2 {
+            color: #ffa31a;
+            font-size: 30px;
+            margin-bottom: 20px;
         }
 
         .btn {
             display: block;
             width: 80%;
-            margin: 15px auto;
-            padding: 15px;
+            max-width: 360px;
+            margin: 20px auto;
+            padding: 18px;
             background: #ffa31a;
             color: #000;
             font-size: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
         }
 
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .btn:hover {
+            filter: brightness(1.1);
+        }
+
+        #slide4 p {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* ------------------------------
+           НАВИГАЦИЯ (СТРЕЛКИ)
+        ------------------------------ */
+
+        .nav-arrows {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffa31a;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* ------------------------------
+           АДАПТАЦИЯ
+        ------------------------------ */
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+
+            #slide1 h2 {
+                font-size: 32px;
+            }
+
+            #slide1 .subtitle {
+                font-size: 16px;
+            }
+
+            .cheburek-anim {
+                width: 200px;
+                height: 200px;
+                margin-top: 30px;
+            }
+
+            #slide1 .cta-text {
+                font-size: 20px;
+            }
+
+            .menu-title {
+                font-size: 22px;
+            }
+
+            .menu-item {
+                font-size: 16px;
+            }
+
+            #slide3 .story-block {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .story-photo-placeholder {
+                margin-bottom: 10px;
+            }
+
+            .story-text {
+                font-size: 16px;
+            }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Нулевая страница -->
+    <!-- НУЛЕВАЯ СТРАНИЦА -->
     <div id="intro" onclick="startSite()">
+        <div class="intro-bg"></div>
         <h1>Время познакомиться и попробовать самые вкусные чебуреки</h1>
+        <p>Нажми, чтобы открыть космический мир вкуса от ЧЕБУРОКЕТ</p>
+        <div class="enter-btn">Войти</div>
     </div>
 
-    <!-- Основные слайды -->
+    <!-- ОСНОВНЫЕ СЛАЙДЫ -->
     <div id="slides">
 
-        <!-- Слайд 1 -->
+        <!-- Слайд 1 — Чебурек -->
         <div class="slide" id="slide1">
             <h2>ЧЕБУРОКЕТ</h2>
-            <img id="cheburek" src="img/placeholder-cheburek.png" alt="Чебурек" onclick="goToDelivery()">
-            <p>Попробуй меня</p>
+            <div class="subtitle">Космические чебуреки, пончики и лимонады</div>
+
+            <div class="cheburek-anim" onclick="goToDelivery()"></div>
+
+            <div class="cta-text">Попробуй меня</div>
+            <div class="hint">Нажми на чебурек — и улетишь к заказу</div>
         </div>
 
         <!-- Слайд 2 — Меню -->
         <div class="slide" id="slide2">
+            <div class="menu-header">
+                <h2>Меню</h2>
+                <p>Выбери свой вкус — от классики до космических сочетаний</p>
+            </div>
+
             <div class="menu-block">
                 <div class="menu-title">ЧЕБУРЕКИ</div>
                 <div class="menu-item"><span>Курица</span><span>S — 73₽ / XL — 129₽</span></div>
@@ -181,8 +465,8 @@
                 <div class="menu-title">ПОНЧИКИ</div>
                 <div class="menu-item"><span>1 шт.</span><span>39₽</span></div>
                 <div class="menu-item"><span>3 шт.</span><span>109₽</span></div>
-                <div class="menu-item"><span>6 шт.</span><span>199₽</span></div>
-                <div class="menu-item"><span>12 шт.</span><span>359₽</span></div>
+                <div class="menu-item"><span>6 шт. — ЖИРТ</span><span>199₽</span></div>
+                <div class="menu-item"><span>12 шт. — ВЫГОДА</span><span>359₽</span></div>
             </div>
 
             <div class="menu-block">
@@ -206,20 +490,34 @@
         <!-- Слайд 3 — История -->
         <div class="slide" id="slide3">
             <h2>История создания</h2>
-            <p>
-                Здесь будет история создания кафе, фото хозяина, рассказ о том, как появилась идея,
-                почему выбрана концепция «ЧЕБУРОКЕТ» и что делает эти чебуреки особенными.
-            </p>
+            <div class="story-block">
+                <div class="story-photo-placeholder"></div>
+                <div class="story-text">
+                    Идея «ЧЕБУРОКЕТ» родилась из простой любви к чебурекам и космическим темам.
+                    Хозяин кафе решил объединить тёплую домашнюю еду и атмосферу старта ракеты —
+                    чтобы каждый гость чувствовал, что его вкус отправляется в полёт.
+                    <br><br>
+                    Здесь позже появится реальная история, фото хозяина, рассказ о первых днях
+                    работы и о том, как чебуреки стали частью космической легенды.
+                </div>
+            </div>
         </div>
 
         <!-- Слайд 4 — Контакты -->
         <div class="slide" id="slide4">
-            <h2 style="color:#ffa31a;">Контакты</h2>
+            <h2>Контакты</h2>
             <a class="btn" href="tel:+70000000000">Позвонить</a>
             <a class="btn" href="https://wa.me/70000000000">Написать в WhatsApp</a>
+            <p>Адрес, время работы и соцсети можно будет добавить позже</p>
             <p style="margin-top:20px; color:#aaa;">© ЧЕБУРОКЕТ</p>
         </div>
 
+    </div>
+
+    <!-- Навигация стрелками -->
+    <div class="nav-arrows">
+        <div class="nav-btn" onclick="prevSlide()">‹</div>
+        <div class="nav-btn" onclick="nextSlide()">›</div>
     </div>
 
     <script>
@@ -230,17 +528,14 @@
         }
 
         function goToDelivery() {
-            window.location.href = "https://yandex.ru"; // заменишь на свою ссылку
+            // сюда потом поставишь реальную ссылку на Delivery / Яндекс Еду
+            window.location.href = "https://yandex.ru";
         }
 
-        // свайп для телефона
-        let startX = 0;
-        document.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-        document.addEventListener("touchend", e => {
-            let endX = e.changedTouches[0].clientX;
-            if (endX < startX - 50) nextSlide();
-            if (endX > startX + 50) prevSlide();
-        });
+        function updateSlides() {
+            document.getElementById("slides").style.transform =
+                `translateX(-${currentSlide * 100}vw)`;
+        }
 
         function nextSlide() {
             if (currentSlide < 3) currentSlide++;
@@ -252,10 +547,20 @@
             updateSlides();
         }
 
-        function updateSlides() {
-            document.getElementById("slides").style.transform =
-                `translateX(-${currentSlide * 100}vw)`;
-        }
+        // свайп для телефона
+        let startX = 0;
+        document.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+        document.addEventListener("touchend", e => {
+            let endX = e.changedTouches[0].clientX;
+            if (endX < startX - 50) nextSlide();
+            if (endX > startX + 50) prevSlide();
+        });
+
+        // стрелки на клавиатуре
+        document.addEventListener("keydown", e => {
+            if (e.key === "ArrowRight") nextSlide();
+            if (e.key === "ArrowLeft") prevSlide();
+        });
     </script>
 
 </body>
