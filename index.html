@@ -19,7 +19,7 @@ html{
 }
 
 body{
-  font-family:'Rimma Sans',Arial,Helvetica,sans-serif;
+  font-family:'Rimma Sans';
   background:#111;
   color:#fff;
   overflow-x:hidden;
@@ -822,6 +822,24 @@ button{
   padding-bottom:15px;
 }
 
+/* DONUT PRICES */
+
+.donut-prices{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:0 15px 15px;
+}
+
+.donut-price{
+  background:#111;
+  border:1px solid #ffffff18;
+  color:#fff;
+  padding:9px 12px;
+  font-size:15px;
+  font-weight:1000;
+}
+
 /* STORY */
 
 #story{
@@ -892,18 +910,56 @@ button{
   color:var(--orange);
 }
 
+.story > .container p,
 .story p{
   color:#ccc;
   line-height:1.8;
 }
 
-.quote{
+/* STORY TEXT */
+
+.story-text{
   margin-top:25px;
-  border-left:3px solid var(--orange);
-  padding-left:18px;
+  color:#ccc;
   font-size:18px;
-  font-weight:800;
+  line-height:1.8;
+}
+
+.story-text p{
+  margin:0 0 25px;
+}
+
+.story-word{
+  display:inline-block;
+  opacity:0;
+  filter:blur(3px);
+  transform:translateY(5px);
+  transition:
+    opacity .35s ease,
+    filter .35s ease,
+    transform .35s ease;
+}
+
+.story-reveal.visible .story-word{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+}
+
+.story-highlight{
+  margin:30px 0;
+  padding:15px 0 15px 18px;
+  border-left:3px solid var(--orange);
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
   line-height:1.5;
+}
+
+.story-highlight.visible .story-word{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
 }
 
 /* CONTACTS */
@@ -1095,6 +1151,15 @@ button{
     object-fit:contain;
   }
 
+  .story-text{
+    font-size:17px;
+    line-height:1.8;
+  }
+
+  .story-highlight{
+    font-size:21px;
+  }
+
   #menu,
   #story{
     padding:80px 0;
@@ -1216,6 +1281,16 @@ button{
 
   .owner-border{
     inset:12px;
+  }
+
+  .story-text{
+    font-size:16px;
+    line-height:1.75;
+  }
+
+  .story-highlight{
+    font-size:19px;
+    padding-left:15px;
   }
 
   .buttons{
@@ -1374,7 +1449,6 @@ button{
           <span>
             НАЖМИ НА ЧЕБУРЕК
           </span>
-
 
         </div>
 
@@ -1781,49 +1855,100 @@ button{
           видел ЧЕБУРОКЕТ с самого начала.
         </p>
 
-        <div class="quote">
-          «Как появился Чебурокет
+        <div class="story-text">
 
-Я пришёл в общепит из мира съёмок и визуального контента.
+          <p class="story-reveal">
+            «Как появился Чебурокет
+          </p>
 
-Много лет я занимаюсь рекламными роликами и музыкальными клипами. В моей работе важны детали: картинка, атмосфера, подача и эмоция. И однажды я подумал: почему бы не применить этот подход к тому, что мы едим каждый день?
+          <p class="story-reveal">
+            Я пришёл в общепит из мира съёмок и визуального контента.
+          </p>
 
-Так появился Чебурокет
+          <p class="story-reveal">
+            Много лет я занимаюсь рекламными роликами и музыкальными клипами. В моей работе важны детали: картинка, атмосфера, подача и эмоция. И однажды я подумал: почему бы не применить этот подход к тому, что мы едим каждый день?
+          </p>
 
-Мне всегда нравился сам чебурек - горячее хрустящее тесто и сочная начинка. Но у многих он до сих пор ассоциируется с рынками, ларьками и прошлым. Мне захотелось изменить это восприятие.
+          <p class="story-highlight story-reveal">
+            Так появился Чебурокет
+          </p>
 
-Сделать чебурек современным. Сделать его стритфудом нового поколения.
+          <p class="story-reveal">
+            Мне всегда нравился сам чебурек - горячее хрустящее тесто и сочная начинка. Но у многих он до сих пор ассоциируется с рынками, ларьками и прошлым. Мне захотелось изменить это восприятие.
+          </p>
 
-Я придумал Чебурокет целиком - от самой идеи и названия до визуального стиля, продукта, упаковки, подачи и каждой детали, которую человек видит и чувствует.
+          <p class="story-highlight story-reveal">
+            Сделать чебурек современным. Сделать его стритфудом нового поколения.
+          </p>
 
-Мне хотелось не просто открыть ещё одну точку с чебуреками. Мне хотелось создать новый образ привычного продукта.
+          <p class="story-reveal">
+            Я придумал Чебурокет целиком - от самой идеи и названия до визуального стиля, продукта, упаковки, подачи и каждой детали, которую человек видит и чувствует.
+          </p>
 
-Поэтому мы используем настоящую мраморную говядину, придумываем необычные сочетания, включая сладкие чебуреки с бананом и Nutella. Я отдельно продумал упаковку: она сохраняет тепло, не протекает, не обжигает руки и позволяет поесть удобно и чисто.
+          <p class="story-reveal">
+            Мне хотелось не просто открыть ещё одну точку с чебуреками. Мне хотелось создать новый образ привычного продукта.
+          </p>
 
-При этом для меня было принципиально важно сохранить доступность.
+          <p class="story-reveal">
+            Поэтому мы используем настоящую мраморную говядину, придумываем необычные сочетания, включая сладкие чебуреки с бананом и Nutella. Я отдельно продумал упаковку: она сохраняет тепло, не протекает, не обжигает руки и позволяет поесть удобно и чисто.
+          </p>
 
-Я не хотел делать продукт с завышенным ценником только потому, что он современный, красиво выглядит и сделан из качественных ингредиентов. Поэтому в Чебурокет мы придерживаемся честного соотношения цены и качества.
+          <p class="story-reveal">
+            При этом для меня было принципиально важно сохранить доступность.
+          </p>
 
-Мне важно, чтобы хороший продукт был доступным. Чтобы человек мог попробовать его без лишних раздумий, получить удовольствие и захотеть вернуться.
+          <p class="story-reveal">
+            Я не хотел делать продукт с завышенным ценником только потому, что он современный, красиво выглядит и сделан из качественных ингредиентов. Поэтому в Чебурокет мы придерживаемся честного соотношения цены и качества.
+          </p>
 
-Для меня Чебурокет-это больше, чем просто фастфуд.
+          <p class="story-reveal">
+            Мне важно, чтобы хороший продукт был доступным. Чтобы человек мог попробовать его без лишних раздумий, получить удовольствие и захотеть вернуться.
+          </p>
 
-Это моя попытка переосмыслить знакомый всем продукт и показать, каким современным он может быть.
+          <p class="story-reveal">
+            Для меня Чебурокет-это больше, чем просто фастфуд.
+          </p>
 
-Я хочу, чтобы за чебуреком приходили не потому, что «так было раньше», а потому что это вкусно, стильно и действительно хочется повторить.
-Я не хотел менять сам чебурек.
-Я хотел изменить отношение к нему.
-И чтобы новое поколение однажды сказало:
+          <p class="story-reveal">
+            Это моя попытка переосмыслить знакомый всем продукт и показать, каким современным он может быть.
+          </p>
 
-«Чебурек? Это же Чебурокет».
+          <p class="story-reveal">
+            Я хочу, чтобы за чебуреком приходили не потому, что «так было раньше», а потому что это вкусно, стильно и действительно хочется повторить.
+          </p>
 
-А ещё мы возвращаем то, что многие уже успели забыть.
+          <p class="story-reveal">
+            Я не хотел менять сам чебурек.
+          </p>
 
-В Чебурекете мы делаем пышки - те самые, советские, которые до сих пор любят в Петербурге и Москве: горячие, воздушные, с сахарной пудрой.
+          <p class="story-highlight story-reveal">
+            Я хотел изменить отношение к нему.
+          </p>
 
-Для кого-то это вкус из детства, а для кого-то - вообще новое открытие. Например, в Краснодаре такой культуры пышек практически нет.
+          <p class="story-reveal">
+            И чтобы новое поколение однажды сказало:
+          </p>
 
-Мне нравится брать знакомые продукты из прошлого, которые действительно любят люди, и давать им новую жизнь в современном формате.».
+          <p class="story-highlight story-reveal">
+            «Чебурек? Это же Чебурокет».
+          </p>
+
+          <p class="story-reveal">
+            А ещё мы возвращаем то, что многие уже успели забыть.
+          </p>
+
+          <p class="story-reveal">
+            В Чебурекете мы делаем пышки - те самые, советские, которые до сих пор любят в Петербурге и Москве: горячие, воздушные, с сахарной пудрой.
+          </p>
+
+          <p class="story-reveal">
+            Для кого-то это вкус из детства, а для кого-то - вообще новое открытие. Например, в Краснодаре такой культуры пышек практически нет.
+          </p>
+
+          <p class="story-reveal">
+            Мне нравится брать знакомые продукты из прошлого, которые действительно любят люди, и давать им новую жизнь в современном формате.».
+          </p>
+
         </div>
 
       </div>
@@ -2136,8 +2261,20 @@ function showCategory(
             ПОНЧИКИ
           </div>
 
-          <div class="category-photo-price">
-            1 шт. — 39 ₽ · 3 шт. — 109 ₽ · 6 шт. — 199 ₽
+          <div class="donut-prices">
+
+            <div class="donut-price">
+              1 шт. — 39 ₽
+            </div>
+
+            <div class="donut-price">
+              3 шт. — 109 ₽
+            </div>
+
+            <div class="donut-price">
+              6 шт. — 199 ₽
+            </div>
+
           </div>
 
         </div>
@@ -2268,6 +2405,131 @@ function showCategory(
   panel.classList.add('show');
 
 }
+
+
+/* STORY WORD ANIMATION */
+
+function prepareStoryAnimation(){
+
+  const blocks =
+    document.querySelectorAll('.story-reveal');
+
+
+  blocks.forEach(block=>{
+
+    const walker =
+      document.createTreeWalker(
+        block,
+        NodeFilter.SHOW_TEXT
+      );
+
+
+    const textNodes = [];
+
+    while(walker.nextNode()){
+      textNodes.push(walker.currentNode);
+    }
+
+
+    textNodes.forEach(node=>{
+
+      if(!node.nodeValue.trim()){
+        return;
+      }
+
+
+      const fragment =
+        document.createDocumentFragment();
+
+
+      const parts =
+        node.nodeValue.split(/(\s+)/);
+
+
+      parts.forEach(part=>{
+
+        if(/\s+/.test(part)){
+
+          fragment.appendChild(
+            document.createTextNode(part)
+          );
+
+        }else{
+
+          const span =
+            document.createElement('span');
+
+          span.className =
+            'story-word';
+
+          span.textContent =
+            part;
+
+          fragment.appendChild(span);
+
+        }
+
+      });
+
+
+      node.parentNode.replaceChild(
+        fragment,
+        node
+      );
+
+    });
+
+
+    const words =
+      block.querySelectorAll('.story-word');
+
+
+    words.forEach((word,index)=>{
+
+      word.style.transitionDelay =
+        `${index * 0.022}s`;
+
+    });
+
+  });
+
+
+  const observer =
+    new IntersectionObserver(
+      entries=>{
+
+        entries.forEach(entry=>{
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add(
+              'visible'
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold:.15,
+        rootMargin:'0px 0px -5% 0px'
+      }
+    );
+
+
+  blocks.forEach(block=>{
+    observer.observe(block);
+  });
+
+}
+
+
+prepareStoryAnimation();
 
 </script>
 
