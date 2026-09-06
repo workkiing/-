@@ -2,2166 +2,1648 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>ЧЕБУРОКЕТ — вкус, который знакомится с тобой</title>
+<title>Чебупокет — чебуреки с характером</title>
+
+<meta name="description" content="Чебупокет — сочные чебуреки, лимонады и сладости.">
 
 <style>
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#111;
-  color:#fff;
-  overflow-x:hidden;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff4df;
+    color: #30170e;
+    overflow-x: hidden;
 }
 
-:root{
-  --orange:#ff6a00;
-  --orange2:#ff8a00;
-  --bg:#1d1d1d;
-  --card:#292929;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-section{
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
+a {
+    color: inherit;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
 
-button{
-  font:inherit;
-}
+/* =========================================
+   START SCREEN
+========================================= */
 
-/* BACKGROUND VIDEO */
+.start-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
 
-#backgroundVideo{
-  position:fixed;
-  inset:0;
-  width:100vw;
-  height:100vh;
-  object-fit:cover;
-  object-position:center;
-  z-index:-10;
-  background:#111;
-  pointer-events:none;
-}
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
 
-#videoOverlay{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.62),
-    rgba(0,0,0,.72)
-  );
-  z-index:-9;
-  pointer-events:none;
+    cursor: pointer;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #ffd985 0%,
+            #f28b32 42%,
+            #b83d19 100%
+        );
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
 }
 
-.container{
-  width:min(1120px,92%);
-  margin:auto;
+.start-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-/* SPARKS */
+.start-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
 
-.spark{
-  position:absolute;
-  color:#fff;
-  font-size:24px;
-  opacity:.8;
-  animation:twinkle 2.2s infinite alternate;
-  pointer-events:none;
-}
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.18) 1px,
+            transparent 1px
+        );
 
-.s1{top:18%;left:7%;}
-.s2{top:32%;right:8%;animation-delay:.4s;}
-.s3{bottom:18%;left:11%;animation-delay:.8s;}
-.s4{bottom:28%;right:15%;animation-delay:1.2s;}
+    background-size: 26px 26px;
 
-@keyframes twinkle{
-  from{
-    transform:scale(.6);
-    opacity:.25;
-  }
-  to{
-    transform:scale(1.25);
-    opacity:1;
-  }
+    opacity: .5;
 }
 
-/* INTRO */
+.start-inner {
+    position: relative;
+    z-index: 2;
 
-#intro{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:radial-gradient(
-    circle at center,
-    #303030 0,
-    #1d1d1d 58%
-  );
-  z-index:5;
-}
+    width: min(950px, 92vw);
 
-.intro{
-  position:relative;
-  z-index:2;
-  width:92%;
-  max-width:900px;
-}
+    min-height: 600px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-.intro-logo-text{
-  font-size:clamp(50px,10vw,105px);
-  font-weight:1000;
-  font-style:italic;
-  letter-spacing:-6px;
-  line-height:.9;
+    text-align: center;
 }
 
-.intro-logo-text b{
-  color:#fff;
+.start-photo {
+    position: absolute;
+
+    width: clamp(80px, 12vw, 145px);
+
+    filter:
+        drop-shadow(
+            0 18px 18px rgba(70,20,5,.28)
+        );
+
+    animation: startFloat 4s ease-in-out infinite;
 }
 
-.intro-logo-text span{
-  color:var(--orange);
+.start-photo.one {
+    left: 3%;
+    top: 16%;
+
+    transform: rotate(-10deg);
 }
+
+.start-photo.two {
+    right: 3%;
+    bottom: 15%;
+
+    transform: rotate(10deg);
 
-.line{
-  height:2px;
-  width:280px;
-  max-width:80%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--orange),
-    #fff,
-    transparent
-  );
-  margin:22px auto;
-}
-
-.kicker{
-  font-weight:900;
-  letter-spacing:5px;
-  color:var(--orange);
-  text-transform:uppercase;
-}
-
-.intro h1{
-  font-size:clamp(22px,4vw,36px);
-  margin:12px 0;
-  text-transform:uppercase;
-}
-
-.intro p{
-  color:#999;
-  margin-bottom:32px;
-}
-
-.enter-wrap{
-  position:relative;
-  display:inline-block;
-}
-
-.enter{
-  border:0;
-  background:var(--orange);
-  color:#111;
-  font-weight:1000;
-  letter-spacing:2px;
-  padding:18px 32px;
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-  transition:.2s;
-  box-shadow:0 0 30px #ff6a0030;
-  animation:buttonTap 2.2s ease-in-out infinite;
-}
-
-.enter:hover{
-  background:#fff;
+    animation-delay: 1.2s;
 }
 
-.enter:active{
-  transform:scale(.92);
+@keyframes startFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-10deg);
+    }
+
+    50% {
+        transform: translateY(-14px) rotate(-7deg);
+    }
 }
 
-.enter::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:0;
-  height:0;
-  border-radius:50%;
-  background:#fff8;
-  transform:translate(-50%,-50%);
-  transition:.35s;
+.start-photo.two {
+    animation-name: startFloatTwo;
 }
 
-.enter:active::after{
-  width:180px;
-  height:180px;
+@keyframes startFloatTwo {
+    0%,100% {
+        transform: translateY(0) rotate(10deg);
+    }
+
+    50% {
+        transform: translateY(-14px) rotate(7deg);
+    }
 }
+
+.start-logo {
+    font-size: clamp(52px, 9vw, 110px);
+    line-height: .85;
 
-@keyframes buttonTap{
-  0%,55%,100%{
-    transform:scale(1);
-    box-shadow:0 0 30px #ff6a0030;
-  }
+    font-weight: 1000;
+    letter-spacing: -.075em;
 
-  36%{
-    transform:scale(.96);
-    box-shadow:0 0 15px #ff6a0020;
-  }
+    color: #fff3d2;
 
-  42%{
-    transform:scale(1.03);
-    box-shadow:0 0 50px #ff6a0060;
-  }
+    text-shadow:
+        5px 6px 0 rgba(102,37,13,.25);
+
+    margin-bottom: 25px;
 }
+
+.start-description {
+    max-width: 480px;
+
+    color: rgba(255,248,230,.92);
+
+    font-size: clamp(15px, 2vw, 20px);
 
-.tap-finger{
-  position:absolute;
-  right:-48px;
-  top:-48px;
-  font-size:42px;
-  z-index:3;
-  pointer-events:none;
-  transform-origin:80% 80%;
-  animation:tapFinger 2.2s ease-in-out infinite;
-  filter:drop-shadow(0 8px 10px #0008);
+    line-height: 1.5;
+
+    margin-bottom: 35px;
 }
 
-@keyframes tapFinger{
-  0%,55%,100%{
-    transform:translate(20px,-18px) rotate(-12deg) scale(1);
-    opacity:0;
-  }
+.start-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-  12%{
-    opacity:1;
-  }
+    width: 250px;
+    height: 110px;
 
-  30%{
-    transform:translate(0,5px) rotate(-4deg) scale(.92);
-    opacity:1;
-  }
+    border:
+        2px solid rgba(255,255,255,.45);
 
-  36%{
-    transform:translate(0,0) rotate(-4deg) scale(.78);
-    opacity:1;
-  }
+    border-radius: 100px;
 
-  42%{
-    transform:translate(0,5px) rotate(-4deg) scale(.92);
-    opacity:1;
-  }
+    background:
+        rgba(255,245,215,.16);
 
-  55%{
-    transform:translate(20px,-18px) rotate(-12deg) scale(1);
-    opacity:0;
-  }
-}
+    color: white;
 
-/* TRANSITION */
+    backdrop-filter: blur(5px);
 
-#transition{
-  position:fixed;
-  inset:0;
-  background:var(--orange);
-  z-index:100;
-  transform:translateY(100%);
-  transition:.75s cubic-bezier(.77,0,.18,1);
-  pointer-events:none;
-}
+    box-shadow:
+        0 20px 45px rgba(70,20,5,.25);
 
-#transition.on{
-  transform:translateY(0);
+    animation: buttonPulse 2s ease-in-out infinite;
 }
 
-#transition.off{
-  transform:translateY(-100%);
+.start-music {
+    font-size: 27px;
+    margin-bottom: 6px;
 }
 
-#site{
-  position:relative;
-  z-index:2;
+.start-button-text {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: .08em;
 }
 
-/* HEADER */
+@keyframes buttonPulse {
+    0%,100% {
+        transform: scale(1);
+    }
 
-.header{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  padding:22px 5%;
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-  z-index:20;
+    50% {
+        transform: scale(1.04);
+    }
 }
 
-.music{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  border:1px solid #777;
-  background:#222c;
-  color:#fff;
-  cursor:pointer;
-  transition:.3s;
-  backdrop-filter:blur(8px);
+
+/* =========================================
+   MAIN
+========================================= */
+
+#site {
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
-.music:hover{
-  border-color:var(--orange);
-  color:var(--orange);
+#site.show {
+    opacity: 1;
 }
 
-/* HERO */
 
-#hero{
-  display:flex;
-  align-items:center;
-  background:linear-gradient(
-    90deg,
-    rgba(0,0,0,.35),
-    rgba(0,0,0,.15)
-  );
-}
+/* =========================================
+   HERO
+========================================= */
 
-.hero{
-  width:min(1120px,92%);
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:30px;
-  padding-top:20px;
-}
+.hero {
+    position: relative;
 
-.hero-text .tag{
-  color:var(--orange);
-  font-weight:1000;
-  letter-spacing:5px;
-}
+    min-height: 100svh;
 
-.hero h2{
-  font-size:clamp(43px,7vw,82px);
-  line-height:.84;
-  font-weight:1000;
-  margin:14px 0 24px;
-  text-transform:uppercase;
-}
+    padding:
+        70px 20px
+        60px;
 
-.hero h2 span{
-  color:var(--orange);
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.hero p{
-  max-width:450px;
-  color:#ccc;
-  line-height:1.7;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            #fff1ca 0%,
+            #ffc766 34%,
+            #ed7c2d 67%,
+            #b83b1a 100%
+        );
 }
 
-.try{
-  margin-top:28px;
-  font-size:18px;
-  font-weight:1000;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.try span{
-  color:var(--orange);
-}
+.hero::before {
+    content: "";
 
-.hero-pointer{
-  display:inline-block;
-  color:var(--orange);
-  font-size:34px;
-  animation:pointerToFood 1s ease-in-out infinite;
-}
+    position: absolute;
+    width: 700px;
+    height: 700px;
 
-@keyframes pointerToFood{
-  0%,100%{
-    transform:translateX(0) scale(1);
-  }
+    left: 50%;
+    top: 52%;
 
-  50%{
-    transform:translateX(12px) scale(1.12);
-  }
-}
+    transform: translate(-50%,-50%);
 
-.hero-food{
-  min-height:620px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  cursor:pointer;
-  padding:35px;
-}
+    border-radius: 50%;
 
-.food-ring{
-  position:absolute;
-  width:520px;
-  height:520px;
-  border:1px solid #ffffff35;
-  border-radius:50%;
-  box-shadow:0 0 80px #000 inset;
-}
+    background:
+        rgba(255,245,207,.15);
 
-.food-img{
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:560px;
-  height:auto;
-  max-height:540px;
-  object-fit:contain;
-  object-position:center;
-  border-radius:14px;
-  filter:drop-shadow(0 30px 28px #000);
-  animation:floatFood 3s ease-in-out infinite;
-  transition:.3s;
+    filter: blur(5px);
 }
 
-.hero-food:hover .food-img{
-  transform:scale(1.05) rotate(1deg);
-  filter:
-    drop-shadow(0 30px 28px #000)
-    drop-shadow(0 0 30px #ff6a0050);
-}
+.hero-content {
+    position: relative;
+    z-index: 2;
 
-@keyframes floatFood{
-  0%,100%{
-    transform:translateY(0) rotate(-2deg) scale(1.02);
-  }
+    width: min(1000px, 100%);
 
-  50%{
-    transform:translateY(-15px) rotate(2deg) scale(1.06);
-  }
+    text-align: center;
 }
 
-.food-glow{
-  position:absolute;
-  width:300px;
-  height:150px;
-  border-radius:50%;
-  background:#ff6a0030;
-  filter:blur(40px);
-  bottom:90px;
-}
+.hero-small {
+    margin-bottom: 13px;
 
-.scroll{
-  position:absolute;
-  bottom:22px;
-  left:50%;
-  transform:translateX(-50%);
-  color:#ccc;
-  font-size:10px;
-  letter-spacing:3px;
-  text-align:center;
-}
+    font-size: 13px;
+    font-weight: 900;
 
-.arrow{
-  width:11px;
-  height:11px;
-  border-right:2px solid var(--orange);
-  border-bottom:2px solid var(--orange);
-  transform:rotate(45deg);
-  margin:10px auto;
-  animation:arr 1.2s infinite;
-}
+    letter-spacing: .22em;
 
-@keyframes arr{
-  50%{
-    transform:rotate(45deg) translate(5px,5px);
-  }
+    text-transform: uppercase;
+
+    color: rgba(101,38,14,.72);
 }
 
-/* MENU */
+.hero-title {
+    font-size:
+        clamp(58px, 11vw, 135px);
 
-#menu{
-  background:rgba(25,25,25,.76);
-  padding:105px 0;
-  backdrop-filter:blur(2px);
-}
+    line-height: .82;
 
-.head{
-  text-align:center;
-  margin-bottom:48px;
-}
+    font-weight: 1000;
 
-.head h2{
-  font-size:clamp(42px,7vw,76px);
-  font-weight:1000;
-  text-transform:uppercase;
-  line-height:.9;
-  margin-top:10px;
-}
+    letter-spacing: -.085em;
 
-.head h2 span{
-  color:var(--orange);
-}
+    color: #76250f;
 
-.menu-subtitle{
-  margin-top:18px;
-  color:var(--orange);
-  font-size:15px;
-  font-weight:1000;
-  letter-spacing:6px;
-  text-transform:uppercase;
-}
+    text-shadow:
+        4px 5px 0 rgba(255,245,210,.28);
 
-.menu-grid{
-  display:grid;
-  grid-template-columns:1fr 1.15fr;
-  gap:40px;
-  align-items:center;
+    margin-bottom: 18px;
 }
 
-.showcase{
-  min-height:560px;
-  background:#181818d9;
-  border:1px solid #ffffff25;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-  backdrop-filter:blur(8px);
-}
+.hero-subtitle {
+    max-width: 580px;
 
-.showcase::before{
-  content:"";
-  position:absolute;
-  width:400px;
-  height:400px;
-  border:1px solid #ffffff20;
-  border-radius:50%;
-  box-shadow:0 0 80px #000 inset;
-}
+    margin:
+        0 auto 8px;
 
-.showcase-inner{
-  text-align:center;
-  width:100%;
-  position:relative;
-  z-index:2;
-}
+    font-size:
+        clamp(16px, 2vw, 21px);
 
-.showcase-img-wrap{
-  min-height:360px;
-  padding:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+    line-height: 1.45;
 
-.showcase-img{
-  width:100%;
-  max-width:470px;
-  height:auto;
-  max-height:340px;
-  object-fit:contain;
-  object-position:center;
-  border-radius:12px;
-  filter:drop-shadow(0 25px 20px #000);
-  transition:.35s;
+    color: #6f2b17;
 }
 
-.showcase-name{
-  font-size:30px;
-  font-weight:1000;
-  text-transform:uppercase;
-  margin:10px 0;
-}
+.hero-action {
+    margin-top: 12px;
+
+    font-size: 16px;
+    font-weight: 900;
 
-.showcase-desc{
-  color:#aaa;
-  text-transform:uppercase;
-  letter-spacing:3px;
-  font-size:11px;
+    color: #712711;
 }
 
-.showcase-price{
-  color:var(--orange);
-  font-size:23px;
-  font-weight:1000;
-  margin-top:10px;
+.main-cheburek-link {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    text-decoration: none;
 }
+
+.main-cheburek {
+    width:
+        clamp(280px, 46vw, 570px);
+
+    margin: auto;
+
+    filter:
+        drop-shadow(
+            0 35px 28px rgba(80,25,5,.35)
+        );
+
+    animation:
+        heroCheburek 4s ease-in-out infinite;
 
-.cards{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+    transition:
+        transform .35s ease,
+        filter .35s ease;
 }
 
-.card{
-  background:#292929dd;
-  border:1px solid #ffffff20;
-  padding:16px 18px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:center;
-  gap:15px;
-  cursor:pointer;
-  transition:.3s;
-  backdrop-filter:blur(8px);
+.main-cheburek-link:hover .main-cheburek {
+    transform:
+        scale(1.07)
+        rotate(-2deg);
+
+    filter:
+        drop-shadow(
+            0 42px 35px rgba(70,20,5,.42)
+        );
 }
 
-.card:hover,
-.card.active{
-  background:var(--orange);
-  border-color:var(--orange);
-  color:#111;
-  transform:translateX(6px);
+@keyframes heroCheburek {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
+
+.hero-click {
+    margin-top: 3px;
 
-.card.active .desc,
-.card:hover .desc{
-  color:#333;
+    font-size: 13px;
+    font-weight: 800;
+
+    color: rgba(98,37,16,.7);
 }
+
+
+/* =========================================
+   SECTIONS
+========================================= */
 
-.name{
-  font-size:14px;
-  font-weight:1000;
-  text-transform:uppercase;
+.section {
+    padding:
+        95px 20px;
 }
 
-.desc{
-  font-size:11px;
-  color:#999;
-  margin-top:5px;
+.container {
+    width:
+        min(1120px, 100%);
+
+    margin: auto;
 }
 
-.prices{
-  display:flex;
-  gap:6px;
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 55px;
 }
+
+.section-title {
+    font-size:
+        clamp(42px, 7vw, 72px);
 
-.price{
-  background:#111;
-  color:#fff;
-  padding:8px 9px;
-  font-size:11px;
-  font-weight:1000;
+    line-height: .95;
+
+    font-weight: 1000;
+
+    letter-spacing: -.06em;
+
+    color: #76270f;
 }
+
+.section-text {
+    max-width: 600px;
 
-/* CATEGORY BUTTONS */
+    margin:
+        15px auto 0;
 
-.categories{
-  margin-top:48px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+    font-size: 17px;
+
+    line-height: 1.55;
+
+    color: #80503b;
 }
+
 
-.cat{
-  background:#181818dd;
-  border:1px solid #ffffff20;
-  padding:25px 15px;
-  text-align:center;
-  cursor:pointer;
-  transition:.3s;
-  backdrop-filter:blur(8px);
+/* =========================================
+   FILLINGS
+========================================= */
+
+.fillings {
+    background:
+        linear-gradient(
+            180deg,
+            #fff4df,
+            #f7dfb6
+        );
 }
+
+.fillings-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
 
-.cat:hover,
-.cat.active{
-  border-color:var(--orange);
-  transform:translateY(-4px);
-  box-shadow:0 10px 25px #0005;
+    gap: 24px;
 }
+
+.filling-card {
+    position: relative;
+
+    min-height: 420px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 22px;
+
+    border-radius: 30px;
 
-.cat h3{
-  color:var(--orange);
-  font-size:16px;
-  margin-bottom:8px;
-  text-transform:uppercase;
+    background:
+        rgba(255,255,255,.68);
+
+    border:
+        1px solid rgba(120,60,20,.09);
+
+    box-shadow:
+        0 18px 50px rgba(90,45,18,.10);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
-.cat p{
-  font-size:11px;
-  color:#aaa;
+.filling-card:hover {
+    transform: translateY(-9px);
+
+    box-shadow:
+        0 28px 65px rgba(90,45,18,.17);
 }
+
+.filling-card img {
+    width: 100%;
+    height: 275px;
 
-/* CATEGORY PANEL */
+    object-fit: contain;
 
-.category-panel{
-  display:none;
-  margin-top:25px;
-  background:#181818e8;
-  border:1px solid #ffffff20;
-  padding:25px;
-  backdrop-filter:blur(8px);
+    margin-bottom: 18px;
+
+    filter:
+        drop-shadow(
+            0 15px 13px rgba(80,35,10,.12)
+        );
+
+    transition:
+        transform .3s ease;
 }
 
-.category-panel.show{
-  display:block;
-  animation:up .35s ease;
+.filling-card:hover img {
+    transform: scale(1.06);
 }
+
+.filling-name {
+    font-size: 23px;
+    font-weight: 900;
 
-@keyframes up{
-  from{
-    opacity:0;
-    transform:translateY(12px);
-  }
+    text-align: center;
 
-  to{
-    opacity:1;
-    transform:none;
-  }
+    color: #68230f;
+
+    margin-bottom: 6px;
 }
+
+.filling-number {
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .13em;
 
-.panel-title{
-  font-size:22px;
-  font-weight:1000;
-  color:var(--orange);
-  text-transform:uppercase;
-  margin-bottom:18px;
+    text-transform: uppercase;
+
+    color: #a0674e;
 }
 
-/* CATEGORY PHOTO CARDS */
 
-.category-photo-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
+/* =========================================
+   LEMONADES
+========================================= */
+
+.lemonades {
+    background:
+        linear-gradient(
+            135deg,
+            #db6427,
+            #a93618
+        );
 }
 
-.category-photo-card{
-  background:#222;
-  border:1px solid #ffffff20;
-  overflow:hidden;
-  text-align:center;
-  transition:.3s;
+.lemonades .section-title {
+    color: #fff4d6;
 }
 
-.category-photo-card:hover{
-  transform:translateY(-5px);
-  border-color:var(--orange);
-  box-shadow:0 15px 30px #0007;
+.lemonades .section-text {
+    color: rgba(255,244,216,.82);
 }
+
+.lemonade-grid {
+    display: grid;
 
-.category-photo{
-  width:100%;
-  height:230px;
-  object-fit:contain;
-  background:#171717;
-  display:block;
-  padding:12px;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
 }
+
+.lemonade-card {
+    min-height: 450px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 
-.category-photo-name{
-  font-size:14px;
-  font-weight:1000;
-  text-transform:uppercase;
-  padding:13px 10px 5px;
+    padding: 15px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease;
 }
 
-.category-photo-price{
-  color:var(--orange);
-  font-size:17px;
-  font-weight:1000;
-  padding-bottom:15px;
+.lemonade-card:hover {
+    transform: translateY(-9px);
 }
 
-/* STORY */
+.lemonade-card img {
+    width: 100%;
+    height: 405px;
 
-#story{
-  display:flex;
-  align-items:center;
-  background:rgba(20,20,20,.76);
-  padding:90px 0;
-  backdrop-filter:blur(2px);
-}
+    object-fit: contain;
 
-.story{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:65px;
-  align-items:center;
+    filter:
+        drop-shadow(
+            0 25px 18px rgba(50,15,5,.28)
+        );
 }
 
-.owner{
-  min-height:620px;
-  height:auto;
-  background:#171717dd;
-  border:1px solid #ffffff25;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-  padding:25px;
-  backdrop-filter:blur(8px);
+
+/* =========================================
+   SWEETS
+========================================= */
+
+.sweets {
+    background:
+        #fff0d7;
 }
+
+.sweets-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+
+    max-width: 900px;
 
-.owner img{
-  width:100%;
-  height:auto;
-  max-width:100%;
-  max-height:570px;
-  object-fit:contain;
-  object-position:center;
-  position:relative;
-  z-index:2;
-  border-radius:8px;
-  filter:drop-shadow(0 25px 25px #000);
+    margin: auto;
 }
+
+.sweet-card {
+    min-height: 420px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 25px;
+
+    border-radius: 32px;
+
+    background:
+        #fffaf0;
+
+    box-shadow:
+        0 20px 55px rgba(100,55,20,.12);
 
-.owner-border{
-  position:absolute;
-  inset:18px;
-  border:1px solid #ffffff25;
-  z-index:3;
-  pointer-events:none;
+    overflow: hidden;
 }
 
-.story small{
-  color:var(--orange);
-  font-weight:1000;
-  letter-spacing:5px;
+.sweet-card img {
+    width: 100%;
+    height: 300px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 18px 15px rgba(70,30,10,.15)
+        );
+
+    transition:
+        transform .3s ease;
 }
 
-.story h2{
-  font-size:clamp(42px,6vw,72px);
-  line-height:.88;
-  text-transform:uppercase;
-  margin:15px 0 28px;
-  font-weight:1000;
+.sweet-card:hover img {
+    transform: scale(1.06);
 }
 
-.story h2 span{
-  color:var(--orange);
+.sweet-card h3 {
+    margin-top: 15px;
+
+    font-size: 27px;
+
+    color: #6f250f;
 }
+
 
-.story p{
-  color:#ccc;
-  line-height:1.8;
+/* =========================================
+   OWNER
+========================================= */
+
+.owner-section {
+    background:
+        linear-gradient(
+            180deg,
+            #f7dfb7,
+            #fff1d8
+        );
 }
+
+.owner-content {
+    display: grid;
+
+    grid-template-columns:
+        .8fr 1.2fr;
 
-.quote{
-  margin-top:25px;
-  border-left:3px solid var(--orange);
-  padding-left:18px;
-  font-size:18px;
-  font-weight:800;
-  line-height:1.5;
+    gap: 70px;
+
+    align-items: center;
 }
+
+.owner-photo {
+    width: min(400px, 100%);
+
+    margin: auto;
 
-/* CONTACTS */
+    border-radius: 35px;
 
-#contacts{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:rgba(15,15,15,.78);
-  backdrop-filter:blur(3px);
+    overflow: hidden;
+
+    box-shadow:
+        0 28px 65px rgba(80,40,15,.20);
 }
+
+.owner-photo img {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
 
-.contact{
-  width:min(800px,90%);
+    object-fit: cover;
 }
+
+.owner-text h2 {
+    font-size:
+        clamp(43px, 6vw, 72px);
+
+    line-height: .95;
+
+    font-weight: 1000;
 
-.contact small{
-  color:var(--orange);
-  font-weight:1000;
-  letter-spacing:5px;
+    letter-spacing: -.06em;
+
+    color: #702510;
+
+    margin-bottom: 24px;
 }
+
+.owner-text p {
+    font-size: 17px;
 
-.contact h2{
-  font-size:clamp(48px,9vw,95px);
-  line-height:.85;
-  font-weight:1000;
-  text-transform:uppercase;
-  margin:15px 0 25px;
+    line-height: 1.7;
+
+    color: #704b38;
+
+    margin-bottom: 15px;
 }
+
+
+/* =========================================
+   ORDER
+========================================= */
 
-.contact h2 span{
-  color:var(--orange);
+.order-section {
+    position: relative;
+
+    padding:
+        120px 20px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #74250f,
+            #b94019
+        );
 }
+
+.order-section::before {
+    content: "ЧЕБУПОКЕТ";
+
+    position: absolute;
 
-.contact p{
-  color:#ccc;
-  max-width:500px;
-  margin:0 auto 35px;
-  line-height:1.7;
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-8deg);
+
+    font-size:
+        clamp(80px, 17vw, 260px);
+
+    white-space: nowrap;
+
+    font-weight: 1000;
+
+    color:
+        rgba(255,255,255,.035);
 }
 
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.order-content {
+    position: relative;
+    z-index: 2;
 }
+
+.order-title {
+    font-size:
+        clamp(48px, 8vw, 90px);
 
-.btn{
-  min-width:220px;
-  padding:18px 25px;
-  font-weight:1000;
-  letter-spacing:1px;
-  transition:.3s;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
+    line-height: .9;
+
+    font-weight: 1000;
+
+    letter-spacing: -.06em;
+
+    color: #fff1d0;
+
+    margin-bottom: 22px;
 }
+
+.order-text {
+    max-width: 600px;
+
+    margin:
+        0 auto 35px;
 
-.call{
-  background:var(--orange);
-  color:#111;
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    color:
+        rgba(255,242,215,.85);
 }
+
+.order-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 270px;
+
+    padding:
+        20px 35px;
+
+    border-radius: 100px;
 
-.wa{
-  background:#fff;
-  color:#111;
+    background:
+        #fff0cc;
+
+    color: #74250f;
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 1000;
+
+    box-shadow:
+        0 18px 40px rgba(40,10,2,.28);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
+
+.order-button:hover {
+    transform:
+        translateY(-5px)
+        scale(1.03);
 
-.btn:hover{
-  transform:translateY(-4px);
+    box-shadow:
+        0 25px 50px rgba(40,10,2,.38);
 }
 
-.whatsapp-icon{
-  width:24px;
-  height:24px;
-  display:block;
-  flex:none;
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding:
+        28px 20px;
+
+    text-align: center;
+
+    background: #2f1209;
+
+    color:
+        rgba(255,240,215,.65);
+
+    font-size: 13px;
 }
+
 
-.footer{
-  position:absolute;
-  bottom:20px;
-  color:#777;
-  font-size:10px;
-  letter-spacing:2px;
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .fillings-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .lemonade-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 10px;
+    }
+
+    .lemonade-card {
+        min-height: 300px;
+
+        padding: 5px;
+    }
+
+    .lemonade-card img {
+        height: 280px;
+    }
+
+    .owner-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        text-align: center;
+    }
+
+    .owner-photo {
+        max-width: 300px;
+    }
 }
 
-/* TABLET / MOBILE */
 
-@media(max-width:800px){
+@media (max-width: 560px) {
 
-  .header{
-    padding:17px 5%;
-  }
+    .start-inner {
+        min-height: 540px;
+    }
 
-  .hero{
-    grid-template-columns:1fr;
-    text-align:center;
-    padding-top:90px;
-  }
+    .start-logo {
+        font-size: 57px;
+    }
 
-  .hero p{
-    margin:auto;
-  }
+    .start-photo {
+        width: 82px;
+    }
 
-  .hero h2{
-    font-size:clamp(40px,10vw,65px);
-  }
+    .start-photo.one {
+        left: 0;
+        top: 17%;
+    }
 
-  .try{
-    justify-content:center;
-    font-size:16px;
-  }
+    .start-photo.two {
+        right: 0;
+        bottom: 16%;
+    }
 
-  .hero-food{
-    min-height:420px;
-    height:auto;
-    padding:25px 10px;
-  }
+    .start-description {
+        max-width: 320px;
+        font-size: 14px;
+    }
 
-  .food-ring{
-    width:350px;
-    height:350px;
-  }
+    .start-button {
+        width: 220px;
+        height: 95px;
+    }
 
-  .food-img{
-    width:100%;
-    max-width:450px;
-    height:auto;
-    max-height:380px;
-    object-fit:contain;
-  }
 
-  .menu-grid,
-  .story{
-    grid-template-columns:1fr;
-  }
+    .hero {
+        padding:
+            75px 15px 55px;
+    }
 
-  .showcase{
-    min-height:480px;
-  }
+    .hero-title {
+        font-size: 61px;
+    }
 
-  .showcase-img-wrap{
-    min-height:340px;
-  }
+    .hero-subtitle {
+        font-size: 15px;
+    }
 
-  .showcase-img{
-    width:100%;
-    max-width:430px;
-    height:auto;
-    max-height:330px;
-  }
+    .main-cheburek {
+        width:
+            min(91vw, 430px);
+    }
 
-  .categories{
-    grid-template-columns:1fr;
-  }
 
-  .category-photo-grid{
-    grid-template-columns:1fr;
-  }
+    .section {
+        padding:
+            70px 15px;
+    }
 
-  .items{
-    grid-template-columns:1fr;
-  }
+    .section-title {
+        font-size: 43px;
+    }
 
-  .owner{
-    min-height:520px;
-    height:auto;
-    padding:20px;
-  }
+    .section-text {
+        font-size: 15px;
+    }
 
-  .owner img{
-    width:100%;
-    height:auto;
-    max-height:500px;
-    object-fit:contain;
-  }
 
-  #menu,
-  #story{
-    padding:80px 0;
-  }
-}
+    .fillings-grid {
+        grid-template-columns:
+            1fr 1fr;
 
-@media(max-width:480px){
+        gap: 12px;
+    }
 
-  .intro-logo-text{
-    font-size:58px;
-    letter-spacing:-4px;
-  }
+    .filling-card {
+        min-height: 275px;
 
-  .intro h1{
-    padding:0 10px;
-  }
+        padding: 12px;
 
-  .tap-finger{
-    right:-34px;
-    top:-42px;
-    font-size:36px;
-  }
+        border-radius: 22px;
+    }
 
-  .hero{
-    padding-top:90px;
-  }
+    .filling-card img {
+        height: 175px;
 
-  .hero h2{
-    font-size:46px;
-  }
+        margin-bottom: 10px;
+    }
 
-  .hero-food{
-    min-height:350px;
-    padding:15px 5px;
-  }
+    .filling-name {
+        font-size: 16px;
+    }
 
-  .food-ring{
-    width:280px;
-    height:280px;
-  }
+    .filling-number {
+        font-size: 9px;
+    }
 
-  .food-img{
-    width:100%;
-    max-width:350px;
-    max-height:310px;
-    object-fit:contain;
-  }
 
-  .try{
-    line-height:1.4;
-  }
+    .lemonade-grid {
+        gap: 7px;
+    }
 
-  .menu-subtitle{
-    font-size:13px;
-    letter-spacing:4px;
-  }
+    .lemonade-card {
+        min-height: 260px;
 
-  .card{
-    padding:13px;
-  }
+        border-radius: 18px;
+    }
 
-  .name{
-    font-size:12px;
-  }
+    .lemonade-card img {
+        height: 245px;
+    }
 
-  .price{
-    padding:7px 7px;
-  }
 
-  .prices{
-    flex-wrap:wrap;
-    justify-content:flex-end;
-  }
+    .sweets-grid {
+        grid-template-columns:
+            1fr;
+    }
 
-  .showcase{
-    min-height:430px;
-  }
+    .sweet-card {
+        min-height: 360px;
+    }
 
-  .showcase-img-wrap{
-    min-height:300px;
-    padding:15px;
-  }
+    .sweet-card img {
+        height: 260px;
+    }
 
-  .showcase-img{
-    width:100%;
-    max-width:330px;
-    max-height:280px;
-    object-fit:contain;
-  }
 
-  .showcase-name{
-    font-size:24px;
-  }
+    .owner-text h2 {
+        font-size: 45px;
+    }
 
-  .category-photo{
-    height:230px;
-  }
+    .owner-text p {
+        font-size: 15px;
+    }
 
-  .owner{
-    min-height:430px;
-    padding:15px;
-  }
 
-  .owner img{
-    width:100%;
-    max-height:400px;
-    object-fit:contain;
-  }
+    .order-section {
+        padding:
+            90px 15px;
+    }
 
-  .owner-border{
-    inset:12px;
-  }
+    .order-title {
+        font-size: 52px;
+    }
 
-  .buttons{
-    flex-direction:column;
-    align-items:center;
-  }
+    .order-text {
+        font-size: 15px;
+    }
 
-  .btn{
-    width:100%;
-    max-width:320px;
-  }
+    .order-button {
+        width: 100%;
+    }
 }
-
 </style>
 </head>
 
+
 <body>
 
-<!-- BACKGROUND VIDEO -->
 
-<video
-  id="backgroundVideo"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto"
->
-  <source src="background.mp4" type="video/mp4">
-</video>
+<!-- =========================================
+     MUSIC
+========================================= -->
 
-<div id="videoOverlay"></div>
-
-<div id="transition"></div>
+<audio id="music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 
-<!-- INTRO -->
+<!-- =========================================
+     ZERO / START SCREEN
+========================================= -->
 
-<section id="intro">
+<div class="start-screen" id="startScreen">
 
-  <div class="spark s1">✦</div>
-  <div class="spark s2">✦</div>
-  <div class="spark s3">✦</div>
-  <div class="spark s4">✦</div>
+    <div class="start-inner">
 
-  <div class="intro">
+        <img
+            class="start-photo one"
+            src="img/start1.png"
+            alt=""
+        >
 
-    <div class="intro-logo-text">
-      <b>ЧЕБУ</b><span>РОКЕТ</span>
-    </div>
+        <img
+            class="start-photo two"
+            src="img/start2.png"
+            alt=""
+        >
 
-    <div class="line"></div>
+        <div class="start-logo">
+            ЧЕБУПОКЕТ
+        </div>
 
-    <div class="kicker">
-      Время познакомиться
-    </div>
+        <div class="start-description">
+            Здесь начинается самое вкусное.
+            Нажми, чтобы открыть наш мир.
+        </div>
 
-    <h1>
-      Попробуй самые вкусные чебуреки
-    </h1>
+        <div class="start-button">
 
-    <p>
-      История. Характер. Хруст.
-    </p>
+            <div class="start-music">
+                ♪
+            </div>
 
-    <div class="enter-wrap">
+            <div class="start-button-text">
+                НАЖМИ, ЧТОБЫ ВОЙТИ
+            </div>
 
-      <button
-        class="enter"
-        onclick="enterSite()"
-      >
-        ТЕБЕ СЮДА
-      </button>
-
-      <div class="tap-finger">
-        👆
-      </div>
+        </div>
 
     </div>
 
-  </div>
+</div>
+
+
+<!-- =========================================
+     SITE
+========================================= -->
+
+<div id="site">
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            Сочно • Хрустяще • С любовью
+        </div>
+
+        <h1 class="hero-title">
+            ЧЕБУПОКЕТ
+        </h1>
+
+        <p class="hero-subtitle">
+            Тот самый чебурек, который хочется
+            попробовать ещё раз.
+        </p>
+
+        <div class="hero-action">
+            Хочешь попробовать — нажми на чебурек
+        </div>
+
+
+        <!--
+             ГЛАВНЫЙ ЧЕБУРЕК
+             НАЖАТИЕ = ЯНДЕКС ЕДА
+        -->
+
+        <a
+            class="main-cheburek-link"
+            href="https://eda.yandex.ru/restaurant/cheburoket?utm_campaign=superapp_taxi_web&utm_medium=referral&utm_source=rst_shared_link"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <img
+                class="main-cheburek"
+                src="img/main-cheburek.png"
+                alt="Чебурек Чебупокет"
+            >
+
+        </a>
+
+        <div class="hero-click">
+            Нажми прямо на него 🥟
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- SITE -->
+<!-- =========================================
+     6 FILLINGS
+========================================= -->
 
-<div id="site" style="display:none">
-
-  <!-- HEADER -->
-
-  <header class="header">
-
-    <button
-      class="music"
-      id="musicBtn"
-      onclick="toggleMusic()"
-    >
-      ♪
-    </button>
-
-  </header>
-
-
-  <!-- HERO -->
-
-  <section id="hero">
-
-    <div class="spark s1">✦</div>
-    <div class="spark s2">✦</div>
-    <div class="spark s3">✦</div>
-    <div class="spark s4">✦</div>
-
-    <div class="hero">
-
-      <div class="hero-text">
-
-        <div class="tag">
-          ЧЕБУРОКЕТ
-        </div>
-
-        <h2>
-          ВКУСНЫЙ<br>
-          СОЧНЫЙ<br>
-          <span>ХРУСТЯЩИЙ</span>
-        </h2>
-
-        <p>
-          Горячий, хрустящий и сочный чебурек.
-          Тот самый вкус, с которого начинается
-          знакомство с ЧЕБУРОКЕТ.
-        </p>
-
-        <div class="try">
-
-          ХОЧЕШЬ ПОПРОБОВАТЬ,
-
-          <span>
-            НАЖМИ НА ЧЕБУРЕК
-          </span>
-
-        
-        </div>
-
-      </div>
-
-
-      <!-- MAIN CHEBUREK -->
-
-      <div
-        class="hero-food"
-        onclick="goToOrder()"
-        title="Заказать ЧЕБУРОКЕТ"
-      >
-
-        <div class="food-ring"></div>
-
-        <div class="food-glow"></div>
-
-        <img
-          class="food-img"
-          src="cheburek-main.png"
-          alt="Главный чебурек ЧЕБУРОКЕТ"
-        >
-
-      </div>
-
-    </div>
-
-
-    <div class="scroll">
-
-      ЛИСТАЙ
-
-      <div class="arrow"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- MENU -->
-
-  <section id="menu">
+<section class="section fillings">
 
     <div class="container">
 
+        <div class="section-heading">
 
-      <div class="head">
+            <h2 class="section-title">
+                Выбирай свой
+            </h2>
 
-        <h2>
-          НАШЕ <span>МЕНЮ</span>
-        </h2>
-
-        <div class="menu-subtitle">
-          ЧЕБУРЕКИ
-        </div>
-
-      </div>
-
-
-      <div class="menu-grid">
-
-
-        <!-- CHEBUREK SHOWCASE -->
-
-        <div class="showcase">
-
-          <div class="showcase-inner">
-
-            <div class="showcase-img-wrap">
-
-              <img
-                id="showImg"
-                class="showcase-img"
-                src="cheburek-kurica.jpg"
-                alt="Чебурек с курицей"
-              >
-
-            </div>
-
-            <div
-              id="showDesc"
-              class="showcase-desc"
-            >
-              Сочная куриная начинка
-            </div>
-
-            <div
-              id="showName"
-              class="showcase-name"
-            >
-              КУРИЦА
-            </div>
-
-            <div
-              id="showPrice"
-              class="showcase-price"
-            >
-              73 ₽ / 129 ₽
-            </div>
-
-          </div>
+            <p class="section-text">
+                Шесть начинок — шесть поводов
+                попробовать Чебупокет.
+            </p>
 
         </div>
 
 
-        <!-- CHEBUREK CARDS -->
-
-        <div class="cards">
+        <div class="fillings-grid">
 
 
-          <div
-            class="card active"
-            onclick="selectFood(this,'КУРИЦА','Сочная куриная начинка','73 ₽ / 129 ₽','cheburek-kurica.jpg')"
-          >
+            <div class="filling-card">
 
-            <div>
+                <img
+                    src="img/filling1.png"
+                    alt="Чебурек с курицей"
+                >
 
-              <div class="name">
-                КУРИЦА
-              </div>
+                <div class="filling-name">
+                    Курица
+                </div>
 
-              <div class="desc">
-                Сочная куриная начинка
-              </div>
+                <div class="filling-number">
+                    вкус №01
+                </div>
 
             </div>
 
-            <div class="prices">
 
-              <div class="price">
-                M 73 ₽
-              </div>
+            <div class="filling-card">
 
-              <div class="price">
-                XL 129 ₽
-              </div>
+                <img
+                    src="img/filling2.png"
+                    alt="Чебурек с курицей и говядиной"
+                >
 
-            </div>
+                <div class="filling-name">
+                    Курица + говядина
+                </div>
 
-          </div>
-
-
-          <div
-            class="card"
-            onclick="selectFood(this,'КУРИЦА + ГОВЯДИНА','Курица и сочная говядина','89 ₽ / 149 ₽','cheburek-kurica-govyadina.jpg')"
-          >
-
-            <div>
-
-              <div class="name">
-                КУРИЦА + ГОВЯДИНА
-              </div>
-
-              <div class="desc">
-                Два вида мяса
-              </div>
+                <div class="filling-number">
+                    вкус №02
+                </div>
 
             </div>
 
-            <div class="prices">
 
-              <div class="price">
-                M 89 ₽
-              </div>
+            <div class="filling-card">
 
-              <div class="price">
-                XL 149 ₽
-              </div>
+                <img
+                    src="img/filling3.png"
+                    alt="Чебурек с адыгейским сыром"
+                >
 
-            </div>
+                <div class="filling-name">
+                    Адыгейский сыр
+                </div>
 
-          </div>
-
-
-          <div
-            class="card"
-            onclick="selectFood(this,'АДЫГЕЙСКИЙ СЫР','Нежная сырная начинка','89 ₽ / 139 ₽','cheburek-adygeyskiy-syr.jpg')"
-          >
-
-            <div>
-
-              <div class="name">
-                АДЫГЕЙСКИЙ СЫР
-              </div>
-
-              <div class="desc">
-                Нежный сыр
-              </div>
+                <div class="filling-number">
+                    вкус №03
+                </div>
 
             </div>
 
-            <div class="prices">
 
-              <div class="price">
-                M 89 ₽
-              </div>
+            <div class="filling-card">
 
-              <div class="price">
-                XL 139 ₽
-              </div>
+                <img
+                    src="img/filling4.png"
+                    alt="Чебурек с мраморной говядиной"
+                >
 
-            </div>
+                <div class="filling-name">
+                    Мраморная говядина
+                </div>
 
-          </div>
-
-
-          <div
-            class="card"
-            onclick="selectFood(this,'МРАМОРНАЯ ГОВЯДИНА','Премиальная мясная начинка','139 ₽ / 179 ₽','cheburek-mramornaya-govyadina.jpg')"
-          >
-
-            <div>
-
-              <div class="name">
-                МРАМОРНАЯ ГОВЯДИНА
-              </div>
-
-              <div class="desc">
-                Премиальный вкус
-              </div>
+                <div class="filling-number">
+                    вкус №04
+                </div>
 
             </div>
 
-            <div class="prices">
 
-              <div class="price">
-                M 139 ₽
-              </div>
+            <div class="filling-card">
 
-              <div class="price">
-                XL 179 ₽
-              </div>
+                <img
+                    src="img/filling5.png"
+                    alt="Чебурек с ветчиной и моцареллой"
+                >
 
-            </div>
+                <div class="filling-name">
+                    Ветчина + моцарелла
+                </div>
 
-          </div>
-
-
-          <div
-            class="card"
-            onclick="selectFood(this,'ВЕТЧИНА + МОЦАРЕЛЛА','Ветчина и тягучая моцарелла','149 ₽','cheburek-vetchina-motsarella.jpg')"
-          >
-
-            <div>
-
-              <div class="name">
-                ВЕТЧИНА + МОЦАРЕЛЛА
-              </div>
-
-              <div class="desc">
-                Горячая моцарелла
-              </div>
+                <div class="filling-number">
+                    вкус №05
+                </div>
 
             </div>
 
-            <div class="prices">
 
-              <div class="price">
-                149 ₽
-              </div>
+            <div class="filling-card">
 
-            </div>
+                <img
+                    src="img/filling6.png"
+                    alt="Чебурек с бананом и Nutella"
+                >
 
-          </div>
+                <div class="filling-name">
+                    Банан + Nutella
+                </div>
 
-
-          <div
-            class="card"
-            onclick="selectFood(this,'БАНАН + NUTELLA','Банан и шоколад','165 ₽','cheburek-banan-nutella.jpg')"
-          >
-
-            <div>
-
-              <div class="name">
-                БАНАН + NUTELLA
-              </div>
-
-              <div class="desc">
-                Сладкий чебурек
-              </div>
+                <div class="filling-number">
+                    вкус №06
+                </div>
 
             </div>
-
-            <div class="prices">
-
-              <div class="price">
-                165 ₽
-              </div>
-
-            </div>
-
-          </div>
 
 
         </div>
-
-      </div>
-
-
-      <!-- CATEGORIES -->
-
-      <div class="categories">
-
-
-        <div
-          class="cat"
-          onclick="showCategory(this,'ПОНЧИКИ','donuts')"
-        >
-
-          <h3>
-            ПОНЧИКИ
-          </h3>
-
-          <p>
-            Горячие и нежные
-          </p>
-
-        </div>
-
-
-        <div
-          class="cat"
-          onclick="showCategory(this,'ХВОРОСТ','khvorost')"
-        >
-
-          <h3>
-            ХВОРОСТ
-          </h3>
-
-          <p>
-            Хрустящий десерт
-          </p>
-
-        </div>
-
-
-        <div
-          class="cat"
-          onclick="showCategory(this,'ЛИМОНАДЫ','lemonades')"
-        >
-
-          <h3>
-            ЛИМОНАДЫ
-          </h3>
-
-          <p>
-            3 вкуса — выбирай свой
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <!-- CATEGORY PANEL -->
-
-      <div
-        id="categoryPanel"
-        class="category-panel"
-      ></div>
-
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- STORY -->
+<!-- =========================================
+     LEMONADES
+========================================= -->
 
-  <section id="story">
+<section class="section lemonades">
 
-    <div class="container story">
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2 class="section-title">
+                А запить?
+            </h2>
+
+            <p class="section-text">
+                Три вкуса лимонада —
+                выбирай свой.
+            </p>
+
+        </div>
 
 
-      <div class="owner">
-
-        <img
-          src="owner.jpg"
-          alt="Хозяин ЧЕБУРОКЕТ"
-        >
-
-        <div class="owner-border"></div>
-
-      </div>
+        <div class="lemonade-grid">
 
 
-      <div>
+            <div class="lemonade-card">
 
-        <small>
-          НАЧАЛО ИСТОРИИ
-        </small>
+                <img
+                    src="img/lemonade1.png"
+                    alt="Лимонад 1"
+                >
 
-        <h2>
-          КАК<br>
-          РОДИЛСЯ<br>
-          <span>ЧЕБУРОКЕТ</span>
+            </div>
+
+
+            <div class="lemonade-card">
+
+                <img
+                    src="img/lemonade2.png"
+                    alt="Лимонад 2"
+                >
+
+            </div>
+
+
+            <div class="lemonade-card">
+
+                <img
+                    src="img/lemonade3.png"
+                    alt="Лимонад 3"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SWEETS
+========================================= -->
+
+<section class="section sweets">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2 class="section-title">
+                Для сладкого финала
+            </h2>
+
+            <p class="section-text">
+                Потому что после вкусного чебурека
+                хочется ещё чего-нибудь вкусного.
+            </p>
+
+        </div>
+
+
+        <div class="sweets-grid">
+
+
+            <!-- ПОНЧИК -->
+
+            <div class="sweet-card">
+
+                <img
+                    src="img/donut.png"
+                    alt="Пончик"
+                >
+
+                <h3>
+                    Пончик
+                </h3>
+
+            </div>
+
+
+            <!-- ХВОРОСТ -->
+
+            <div class="sweet-card">
+
+                <img
+                    src="img/khvorost.png"
+                    alt="Хворост"
+                >
+
+                <h3>
+                    Хворост
+                </h3>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     OWNER
+========================================= -->
+
+<section class="section owner-section">
+
+    <div class="container">
+
+        <div class="owner-content">
+
+
+            <div class="owner-photo">
+
+                <img
+                    src="img/owner.jpg"
+                    alt="Хозяин Чебупокета"
+                >
+
+            </div>
+
+
+            <div class="owner-text">
+
+                <h2>
+                    За вкусом
+                    стоят люди
+                </h2>
+
+                <p>
+                    Чебупокет — это не просто еда.
+                    Это место, где любят то,
+                    что делают.
+                </p>
+
+                <p>
+                    От первого теста до горячего
+                    чебурека в твоих руках —
+                    всё делается с вниманием
+                    к деталям.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     ORDER
+========================================= -->
+
+<section class="order-section">
+
+    <div class="order-content">
+
+        <h2 class="order-title">
+            Хочешь ещё?
         </h2>
 
-        <p>
-          Здесь появится настоящая история создания кафе:
-          как родилась идея, почему именно чебуреки,
-          как создавалась концепция и каким хозяин
-          видел ЧЕБУРОКЕТ с самого начала.
+        <p class="order-text">
+            Тогда не откладывай.
+            Нажимай и заказывай свой
+            любимый Чебупокет.
         </p>
 
-        <div class="quote">
-          «Хотелось создать место, куда приходят
-          не просто поесть, а получить эмоцию».
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACTS -->
-
-  <section id="contacts">
-
-
-    <div class="contact">
-
-
-      <small>
-        ПОРА ПОПРОБОВАТЬ?
-      </small>
-
-
-      <h2>
-        ЗАКАЖИ<br>
-        <span>ЧЕБУРОКЕТ</span>
-      </h2>
-
-
-      <p>
-        Позвони нам или напиши в WhatsApp —
-        и совсем скоро горячий хрустящий
-        чебурек будет у тебя.
-      </p>
-
-
-      <div class="buttons">
-
-
         <a
-          class="btn call"
-          href="tel:+79884763000"
+            class="order-button"
+            href="https://eda.yandex.ru/restaurant/cheburoket?utm_campaign=superapp_taxi_web&utm_medium=referral&utm_source=rst_shared_link"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-          ☎
-          ПОЗВОНИТЬ
+            ЗАКАЗАТЬ В ЯНДЕКС ЕДЕ 🥟
         </a>
 
-
-        <a
-          class="btn wa"
-          href="https://wa.me/79884763000"
-          target="_blank"
-          rel="noopener"
-        >
-
-          <svg
-            class="whatsapp-icon"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-
-            <path
-              fill="#25D366"
-              d="M20.52 3.48A11.82 11.82 0 0 0 12.1 0C5.56 0 .24 5.32.24 11.86c0 2.09.55 4.13 1.6 5.92L.15 24l6.37-1.67a11.86 11.86 0 0 0 5.58 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.23-6.15-3.45-8.41Z"
-            />
-
-            <path
-              fill="#fff"
-              d="M17.5 14.23c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"
-            />
-
-          </svg>
-
-          НАПИСАТЬ В WHATSAPP
-
-        </a>
-
-
-      </div>
-
-
     </div>
 
-
-    <div class="footer">
-      ЧЕБУРОКЕТ © 2026
-    </div>
+</section>
 
 
-  </section>
+<footer>
+    © ЧЕБУПОКЕТ
+</footer>
 
 
 </div>
 
 
-<!-- MUSIC -->
-
-<audio id="music" loop>
-
-  <source
-    src="music.mp3"
-    type="audio/mpeg"
-  >
-
-</audio>
-
+<!-- =========================================
+     SCRIPT
+========================================= -->
 
 <script>
 
-const music =
-  document.getElementById('music');
-
-const transition =
-  document.getElementById('transition');
-
-const intro =
-  document.getElementById('intro');
+const startScreen =
+    document.getElementById("startScreen");
 
 const site =
-  document.getElementById('site');
+    document.getElementById("site");
 
-const musicBtn =
-  document.getElementById('musicBtn');
-
-const backgroundVideo =
-  document.getElementById('backgroundVideo');
+const music =
+    document.getElementById("music");
 
 
-/* YANDEX ORDER */
+startScreen.addEventListener("click", function() {
 
-function goToOrder(){
+    /*
+       ВАЖНО:
+       музыка запускается именно после
+       пользовательского клика,
+       поэтому браузер не должен её блокировать.
+    */
 
-  window.location.href =
-    'https://eda.yandex.ru/restaurant/cheburoket?utm_campaign=superapp_taxi_web&utm_medium=referral&utm_source=rst_shared_link';
-
-}
-
-
-/* ENTER SITE */
-
-function enterSite(){
-
-  music.volume = 0.35;
-
-  music.play().catch(()=>{});
-
-  backgroundVideo.play().catch(()=>{});
-
-  transition.classList.add('on');
-
-
-  setTimeout(()=>{
-
-    intro.style.display = 'none';
-
-    site.style.display = 'block';
-
-    window.scrollTo(0,0);
-
-  },700);
-
-
-  setTimeout(()=>{
-
-    transition.classList.add('off');
-
-  },850);
-
-
-  setTimeout(()=>{
-
-    transition.classList.remove('on');
-
-    transition.classList.remove('off');
-
-  },1600);
-
-}
-
-
-/* MUSIC */
-
-function toggleMusic(){
-
-  if(music.paused){
-
-    music.play();
-
-    musicBtn.textContent = '♪';
-
-  }else{
-
-    music.pause();
-
-    musicBtn.textContent = '×';
-
-  }
-
-}
-
-
-/* CHEBUREK SELECT */
-
-function selectFood(
-  el,
-  name,
-  desc,
-  price,
-  image
-){
-
-  document
-    .querySelectorAll('.card')
-    .forEach(card=>{
-      card.classList.remove('active');
+    music.play().catch(function(error) {
+        console.log("Музыка не запустилась:", error);
     });
 
 
-  el.classList.add('active');
+    startScreen.classList.add("hide");
 
+    site.classList.add("show");
 
-  const img =
-    document.getElementById('showImg');
 
+    setTimeout(function() {
+        startScreen.style.display = "none";
+    }, 900);
 
-  img.style.transform =
-    'scale(.82) rotate(-5deg)';
-
-
-  setTimeout(()=>{
-
-    img.src = image;
-
-    img.alt =
-      'Чебурек ' + name;
-
-
-    document.getElementById(
-      'showName'
-    ).textContent = name;
-
-
-    document.getElementById(
-      'showDesc'
-    ).textContent = desc;
-
-
-    document.getElementById(
-      'showPrice'
-    ).textContent = price;
-
-
-    img.style.transform =
-      'scale(1) rotate(0)';
-
-  },180);
-
-}
-
-
-/* CATEGORY */
-
-function showCategory(
-  el,
-  title,
-  type
-){
-
-  document
-    .querySelectorAll('.cat')
-    .forEach(cat=>{
-      cat.classList.remove('active');
-    });
-
-
-  el.classList.add('active');
-
-
-  const panel =
-    document.getElementById(
-      'categoryPanel'
-    );
-
-
-  let html = '';
-
-
-  /* DONUTS */
-
-  if(type === 'donuts'){
-
-    html = `
-
-      <div class="panel-title">
-        ${title}
-      </div>
-
-      <div class="category-photo-grid">
-
-        <div class="category-photo-card">
-
-          <img
-            class="category-photo"
-            src="ponchiki.jpg"
-            alt="Пончики"
-          >
-
-          <div class="category-photo-name">
-            ПОНЧИКИ
-          </div>
-
-          <div class="category-photo-price">
-            1 шт. — 39 ₽ · 3 шт. — 109 ₽ · 6 шт. — 199 ₽
-          </div>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* KHvorost */
-
-  if(type === 'khvorost'){
-
-    html = `
-
-      <div class="panel-title">
-        ${title}
-      </div>
-
-      <div class="category-photo-grid">
-
-        <div class="category-photo-card">
-
-          <img
-            class="category-photo"
-            src="khvorost.jpg"
-            alt="Хворост"
-          >
-
-          <div class="category-photo-name">
-            ХВОРОСТ
-          </div>
-
-          <div class="category-photo-price">
-            1 шт. — 99 ₽
-          </div>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* LEMONADES */
-
-  if(type === 'lemonades'){
-
-    html = `
-
-      <div class="panel-title">
-        ${title}
-      </div>
-
-      <div class="category-photo-grid">
-
-
-        <div class="category-photo-card">
-
-          <img
-            class="category-photo"
-            src="limonad-lavanda-yagody.jpg"
-            alt="Лимонад лаванда-лесные ягоды"
-          >
-
-          <div class="category-photo-name">
-            ЛАВАНДА + ЛЕСНЫЕ ЯГОДЫ
-          </div>
-
-          <div class="category-photo-price">
-            200 ₽
-          </div>
-
-        </div>
-
-
-        <div class="category-photo-card">
-
-          <img
-            class="category-photo"
-            src="limonad-mohito.jpg"
-            alt="Лимонад мохито"
-          >
-
-          <div class="category-photo-name">
-            МОХИТО
-          </div>
-
-          <div class="category-photo-price">
-            200 ₽
-          </div>
-
-        </div>
-
-
-        <div class="category-photo-card">
-
-          <img
-            class="category-photo"
-            src="limonad-mango-marakuya.jpg"
-            alt="Лимонад манго-маракуйя"
-          >
-
-          <div class="category-photo-name">
-            МАНГО-МАРАКУЙЯ
-          </div>
-
-          <div class="category-photo-price">
-            200 ₽
-          </div>
-
-        </div>
-
-
-      </div>
-
-    `;
-
-  }
-
-
-  panel.innerHTML = html;
-
-  panel.classList.add('show');
-
-}
+}, { once: true });
 
 </script>
 
 </body>
 </html>
-```
