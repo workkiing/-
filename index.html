@@ -918,11 +918,18 @@ button{
   color:var(--orange);
 }
 
-/* ВСЯ ИСТОРИЯ ПО УМОЛЧАНИЮ */
-
 .story > .container p,
 .story p{
   color:#ccc;
+  line-height:1.8;
+}
+
+/* STORY TEXT */
+
+.story-text{
+  margin-top:25px;
+  color:#ccc;
+  font-size:18px;
   line-height:1.8;
 }
 
@@ -931,44 +938,43 @@ button{
 .story-reveal:not(.story-highlight){
   font-family:Arial, Helvetica, sans-serif;
   font-weight:400;
-  font-size:18px;
-  line-height:1.8;
-  color:#ccc;
+}
+
+.story-text p{
   margin:0 0 25px;
 }
 
-/* ВЫДЕЛЕННЫЙ ТЕКСТ ИСТОРИИ */
-
-.story-highlight{
-  font-family:'Rimma Sans Bold';
-  margin:30px 0;
-  padding:15px 0 15px 18px;
-  border-left:3px solid var(--orange);
-  color:#fff;
-  font-size:22px;
-  font-weight:700;
-  line-height:1.5;
-}
-
-/* АНИМАЦИЯ СЛОВ */
-
 .story-word{
-  display:inline;
+  display:inline-block;
   opacity:0;
   filter:blur(3px);
+  transform:translateY(5px);
   transition:
     opacity .35s ease,
-    filter .35s ease;
+    filter .35s ease,
+    transform .35s ease;
 }
 
 .story-reveal.visible .story-word{
   opacity:1;
   filter:blur(0);
+  transform:translateY(0);
+}
+
+.story-highlight{
+  margin:30px 0;
+  padding:15px 0 15px 18px;
+  border-left:3px solid var(--orange);
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  line-height:1.5;
 }
 
 .story-highlight.visible .story-word{
   opacity:1;
   filter:blur(0);
+  transform:translateY(0);
 }
 
 /* CONTACTS */
@@ -1051,8 +1057,7 @@ button{
   flex:none;
 }
 
-/* FOOTER
-   Только в конце основной страницы */
+/* FOOTER */
 
 .footer{
   position:absolute;
@@ -1163,7 +1168,7 @@ button{
     object-fit:contain;
   }
 
-  .story-reveal:not(.story-highlight){
+  .story-text{
     font-size:17px;
     line-height:1.8;
   }
@@ -1178,31 +1183,65 @@ button{
   }
 }
 
+/* PHONE */
+
 @media(max-width:480px){
 
+  /* ПЕРВЫЙ ЭКРАН — КОМПАКТНАЯ ВЕРСИЯ */
+
+  #intro{
+    min-height:100svh;
+    height:100svh;
+    padding:15px 0;
+  }
+
+  .intro{
+    width:94%;
+    max-width:390px;
+  }
+
   .intro-logo-text{
-    font-size:58px;
-    letter-spacing:-4px;
+    font-size:46px;
+    letter-spacing:-3px;
+    line-height:.9;
+  }
+
+  .line{
+    width:210px;
+    margin:13px auto;
   }
 
   .intro h1{
+    font-size:20px;
+    line-height:1.1;
+    margin:8px 0;
     padding:0 10px;
   }
 
   .intro-photos{
-    gap:8px;
-    margin-bottom:20px;
+    gap:6px;
+    margin-bottom:16px;
   }
 
   .intro-photo{
-    width:105px;
-    height:75px;
+    width:90px;
+    height:65px;
+  }
+
+  .enter-wrap{
+    margin-top:4px;
+  }
+
+  .enter{
+    padding:15px 22px;
+    font-size:14px;
+    letter-spacing:1.5px;
   }
 
   .tap-finger{
-    right:-34px;
-    top:-42px;
-    font-size:36px;
+    right:-30px;
+    top:-38px;
+    font-size:34px;
   }
 
   .hero{
@@ -1295,7 +1334,7 @@ button{
     inset:12px;
   }
 
-  .story-reveal:not(.story-highlight){
+  .story-text{
     font-size:16px;
     line-height:1.75;
   }
@@ -1358,7 +1397,7 @@ button{
 
     <h1>
       ЧЕБУРЕКИ НОВОГО ФОРМАТА
-    </h1>
+    <h1>
 
     <!-- 2 START PHOTOS -->
 
@@ -1380,7 +1419,7 @@ button{
 
     <h1>
       БЫСТРО.ВКУСНО.СОЧНО
-    </h1>
+    <h1>
 
     <div class="enter-wrap">
 
@@ -1502,6 +1541,7 @@ button{
   <section id="menu">
 
     <div class="container">
+
 
       <div class="head">
 
@@ -1952,7 +1992,6 @@ button{
 
 
   <!-- CONTACTS -->
-  <!-- Этот блок находится ТОЛЬКО внутри основной страницы #site -->
 
   <section id="contacts">
 
