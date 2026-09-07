@@ -6,12 +6,11 @@
 
 <title>ЧЕБУРОКЕТ — вкус, который знакомится с тобой</title>
 
-<!-- MONTSERRAT ДЛЯ ТЕКСТА ИСТОРИИ -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-
 <style>
+
+/* ================================
+   FONTS
+================================ */
 
 @font-face{
   font-family:'Rimma Sans Bold';
@@ -20,6 +19,20 @@
   font-style:normal;
   font-display:swap;
 }
+
+/* ЛОКАЛЬНЫЙ MONTSERRAT ИЗ GITHUB */
+@font-face{
+  font-family:'MontserratLocal';
+  src:url('Montserrat-Regular.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+
+/* ================================
+   RESET
+================================ */
 
 *{
   box-sizing:border-box;
@@ -32,7 +45,7 @@ html{
 }
 
 body{
-  font-family:'Rimma Sans Bold';
+  font-family:'Rimma Sans Bold',Arial,sans-serif;
   background:#111;
   color:#fff;
   overflow-x:hidden;
@@ -57,10 +70,13 @@ a{
 }
 
 button{
-  font-family:'Rimma Sans Bold';
+  font-family:'Rimma Sans Bold',Arial,sans-serif;
 }
 
-/* BACKGROUND VIDEO */
+
+/* ================================
+   BACKGROUND VIDEO
+================================ */
 
 #backgroundVideo{
   position:fixed;
@@ -69,7 +85,7 @@ button{
   height:100vh;
   object-fit:cover;
   object-position:center;
-  z-index:-10;
+  z-index:0;
   background:#111;
   pointer-events:none;
 }
@@ -82,7 +98,7 @@ button{
     rgba(0,0,0,.62),
     rgba(0,0,0,.72)
   );
-  z-index:-9;
+  z-index:1;
   pointer-events:none;
 }
 
@@ -91,7 +107,10 @@ button{
   margin:auto;
 }
 
-/* SPARKS */
+
+/* ================================
+   SPARKS
+================================ */
 
 .spark{
   position:absolute;
@@ -112,13 +131,17 @@ button{
     transform:scale(.6);
     opacity:.25;
   }
+
   to{
     transform:scale(1.25);
     opacity:1;
   }
 }
 
-/* INTRO */
+
+/* ================================
+   INTRO
+================================ */
 
 #intro{
   display:flex;
@@ -188,7 +211,10 @@ button{
   margin-bottom:25px;
 }
 
-/* START PHOTOS */
+
+/* ================================
+   START PHOTOS
+================================ */
 
 .intro-photos{
   display:flex;
@@ -326,7 +352,10 @@ button{
   }
 }
 
-/* TRANSITION */
+
+/* ================================
+   TRANSITION
+================================ */
 
 #transition{
   position:fixed;
@@ -351,7 +380,10 @@ button{
   z-index:2;
 }
 
-/* HEADER */
+
+/* ================================
+   HEADER
+================================ */
 
 .header{
   position:absolute;
@@ -382,7 +414,10 @@ button{
   color:var(--orange);
 }
 
-/* HERO */
+
+/* ================================
+   HERO
+================================ */
 
 #hero{
   display:flex;
@@ -548,7 +583,10 @@ button{
   }
 }
 
-/* MENU */
+
+/* ================================
+   MENU
+================================ */
 
 #menu{
   background:rgba(25,25,25,.76);
@@ -716,7 +754,10 @@ button{
   font-weight:1000;
 }
 
-/* CATEGORY BUTTONS */
+
+/* ================================
+   CATEGORY BUTTONS
+================================ */
 
 .categories{
   margin-top:48px;
@@ -754,7 +795,10 @@ button{
   color:#aaa;
 }
 
-/* CATEGORY PANEL */
+
+/* ================================
+   CATEGORY PANEL
+================================ */
 
 .category-panel{
   display:none;
@@ -790,7 +834,10 @@ button{
   margin-bottom:18px;
 }
 
-/* CATEGORY PHOTO CARDS */
+
+/* ================================
+   CATEGORY PHOTO CARDS
+================================ */
 
 .category-photo-grid{
   display:grid;
@@ -835,7 +882,10 @@ button{
   padding-bottom:15px;
 }
 
-/* DONUT PRICES */
+
+/* ================================
+   DONUT PRICES
+================================ */
 
 .donut-prices{
   display:flex;
@@ -853,7 +903,10 @@ button{
   font-weight:1000;
 }
 
-/* STORY */
+
+/* ================================
+   STORY
+================================ */
 
 #story{
   display:flex;
@@ -923,13 +976,11 @@ button{
   color:var(--orange);
 }
 
-.story > .container p,
-.story p{
-  color:#ccc;
-  line-height:1.8;
-}
 
-/* STORY TEXT */
+/* ================================
+   STORY TEXT
+   ТОЛЬКО ОБЫЧНЫЙ ТЕКСТ = MONTSERRAT
+================================ */
 
 .story-text{
   margin-top:25px;
@@ -938,11 +989,19 @@ button{
   line-height:1.8;
 }
 
-/* ОБЫЧНЫЙ ТЕКСТ ИСТОРИИ — MONTSERRAT */
+/* ЖЁСТКО ПЕРЕОПРЕДЕЛЯЕМ ШРИФТ ОБЫЧНЫХ АБЗАЦЕВ */
+#story .story-reveal:not(.story-highlight){
+  font-family:'MontserratLocal',Arial,sans-serif !important;
+  font-weight:400 !important;
+  color:#ccc;
+  line-height:1.8;
+  font-size:18px;
+}
 
-.story-reveal:not(.story-highlight){
-  font-family:'Montserrat', sans-serif;
-  font-weight:400;
+/* Дополнительный класс для обычной истории */
+.story-normal{
+  font-family:'MontserratLocal',Arial,sans-serif !important;
+  font-weight:400 !important;
 }
 
 .story-text p{
@@ -966,13 +1025,18 @@ button{
   transform:translateY(0);
 }
 
+
+/* ВЫДЕЛЕННЫЕ ФРАЗЫ ОСТАЮТСЯ RIMMA SANS */
+
 .story-highlight{
   margin:30px 0;
   padding:15px 0 15px 18px;
   border-left:3px solid var(--orange);
   color:#fff;
+
+  font-family:'Rimma Sans Bold',Arial,sans-serif !important;
   font-size:22px;
-  font-weight:900;
+  font-weight:900 !important;
   line-height:1.5;
 }
 
@@ -982,7 +1046,10 @@ button{
   transform:translateY(0);
 }
 
-/* CONTACTS */
+
+/* ================================
+   CONTACTS
+================================ */
 
 #contacts{
   display:flex;
@@ -1062,7 +1129,10 @@ button{
   flex:none;
 }
 
-/* FOOTER */
+
+/* ================================
+   FOOTER
+================================ */
 
 .footer{
   position:absolute;
@@ -1072,7 +1142,10 @@ button{
   letter-spacing:2px;
 }
 
-/* TABLET / MOBILE */
+
+/* ================================
+   TABLET / MOBILE
+================================ */
 
 @media(max-width:800px){
 
@@ -1173,7 +1246,7 @@ button{
     object-fit:contain;
   }
 
-  .story-text{
+  #story .story-reveal:not(.story-highlight){
     font-size:17px;
     line-height:1.8;
   }
@@ -1188,11 +1261,12 @@ button{
   }
 }
 
-/* PHONE */
+
+/* ================================
+   PHONE
+================================ */
 
 @media(max-width:480px){
-
-  /* ПЕРВЫЙ ЭКРАН — КОМПАКТНАЯ ВЕРСИЯ */
 
   #intro{
     min-height:100svh;
@@ -1339,7 +1413,7 @@ button{
     inset:12px;
   }
 
-  .story-text{
+  #story .story-reveal:not(.story-highlight){
     font-size:16px;
     line-height:1.75;
   }
@@ -1366,7 +1440,10 @@ button{
 
 <body>
 
-<!-- BACKGROUND VIDEO -->
+
+<!-- ================================
+     BACKGROUND VIDEO
+================================ -->
 
 <video
   id="backgroundVideo"
@@ -1384,7 +1461,9 @@ button{
 <div id="transition"></div>
 
 
-<!-- INTRO -->
+<!-- ================================
+     INTRO
+================================ -->
 
 <section id="intro">
 
@@ -1403,7 +1482,8 @@ button{
 
     <h1>
       ЧЕБУРЕКИ НОВОГО ФОРМАТА
-    <h1>
+    </h1>
+
 
     <!-- 2 START PHOTOS -->
 
@@ -1423,9 +1503,11 @@ button{
 
     </div>
 
+
     <h1>
       БЫСТРО.ВКУСНО.СОЧНО
-    <h1>
+    </h1>
+
 
     <div class="enter-wrap">
 
@@ -1447,9 +1529,12 @@ button{
 </section>
 
 
-<!-- SITE -->
+<!-- ================================
+     SITE
+================================ -->
 
 <div id="site" style="display:none">
+
 
   <!-- HEADER -->
 
@@ -1459,6 +1544,7 @@ button{
       class="music"
       id="musicBtn"
       onclick="toggleMusic()"
+      aria-label="Музыка"
     >
       ♪
     </button>
@@ -1466,7 +1552,9 @@ button{
   </header>
 
 
-  <!-- HERO -->
+  <!-- ================================
+       HERO
+  ================================ -->
 
   <section id="hero">
 
@@ -1489,10 +1577,10 @@ button{
           <span>ХРУСТЯЩИЙ</span>
         </h2>
 
-         </h2>
+        <p>
           ГОРЯЧИЙ И СОЧНЫЙ.
           ТОТ САМЫЙ ВКУС ЧЕБУРЕКА, С КОТОРОГО НАЧИНАЕТСЯ ЗНАКОМСТВО С ЧЕБУРОКЕТ.
-         </h2>
+        </p>
 
         <div class="try">
 
@@ -1541,7 +1629,9 @@ button{
   </section>
 
 
-  <!-- MENU -->
+  <!-- ================================
+       MENU
+  ================================ -->
 
   <section id="menu">
 
@@ -1585,7 +1675,7 @@ button{
               id="showDesc"
               class="showcase-desc"
             >
-             сочная начинка
+              сочная начинка
             </div>
 
             <div
@@ -1623,9 +1713,7 @@ button{
                 КУРИЦА
               </div>
 
-              <div class="desc">
-            
-              </div>
+              <div class="desc"></div>
 
             </div>
 
@@ -1655,9 +1743,7 @@ button{
                 КУРИЦА + ГОВЯДИНА
               </div>
 
-              <div class="desc">
-               
-              </div>
+              <div class="desc"></div>
 
             </div>
 
@@ -1687,9 +1773,7 @@ button{
                 АДЫГЕЙСКИЙ СЫР
               </div>
 
-              <div class="desc">
-      
-              </div>
+              <div class="desc"></div>
 
             </div>
 
@@ -1719,9 +1803,7 @@ button{
                 МРАМОРНАЯ ГОВЯДИНА
               </div>
 
-              <div class="desc">
-               
-              </div>
+              <div class="desc"></div>
 
             </div>
 
@@ -1751,9 +1833,7 @@ button{
                 ВЕТЧИНА + МОЦАРЕЛЛА
               </div>
 
-              <div class="desc">
-
-              </div>
+              <div class="desc"></div>
 
             </div>
 
@@ -1779,9 +1859,7 @@ button{
                 БАНАН + NUTELLA
               </div>
 
-              <div class="desc">
-    
-              </div>
+              <div class="desc"></div>
 
             </div>
 
@@ -1870,7 +1948,9 @@ button{
   </section>
 
 
-  <!-- STORY -->
+  <!-- ================================
+       STORY
+  ================================ -->
 
   <section id="story">
 
@@ -1901,93 +1981,108 @@ button{
           <span>ЧЕБУРОКЕТ</span>
         </h2>
 
-        <p class="story-reveal">
+
+        <!-- ОБЫЧНЫЙ ТЕКСТ = MONTSERRAT -->
+
+        <p class="story-reveal story-normal">
           Я пришёл в общепит из мира съёмок и визуального контента.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Много лет я занимаюсь рекламными роликами и музыкальными клипами. В моей работе важны детали: картинка, атмосфера, подача и эмоция. И однажды я подумал: почему бы не применить этот подход к тому, что мы едим каждый день?
         </p>
+
+
+        <!-- АКЦЕНТ = RIMMA SANS -->
 
         <p class="story-highlight story-reveal">
           Так появился ЧЕБУРОКЕТ
         </p>
 
-        <p class="story-reveal">
+
+        <p class="story-reveal story-normal">
           Мне всегда нравился сам чебурек - горячее хрустящее тесто и сочная начинка. Но у многих он до сих пор ассоциируется с рынками, ларьками и прошлым. Мне захотелось изменить это восприятие.
         </p>
 
+
         <p class="story-highlight story-reveal">
-          сделать ЧЕБУРЕК современным СДЕЛАТЬ ЕГО СТРИДФУДОМ НОВОГО ПОКОЛЕНИЯ.
+          сделать ЧЕБУРЕК современным, СДЕЛАТЬ ЕГО СТРИДФУДОМ НОВОГО ПОКОЛЕНИЯ.
         </p>
 
-        <p class="story-reveal">
+
+        <p class="story-reveal story-normal">
           Я придумал Чебурокет целиком - от самой идеи и названия до визуального стиля, продукта, упаковки, подачи и каждой детали, которую человек видит и чувствует.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Мне хотелось не просто открыть ещё одну точку с чебуреками. Мне хотелось создать новый образ привычного продукта.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Поэтому мы используем настоящую мраморную говядину, придумываем необычные сочетания, включая сладкие чебуреки с бананом и Nutella. Я отдельно продумал упаковку: она сохраняет тепло, не протекает, не обжигает руки и позволяет поесть удобно и чисто.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           При этом для меня было принципиально важно сохранить доступность.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Я не хотел делать продукт с завышенным ценником только потому, что он современный, красиво выглядит и сделан из качественных ингредиентов. Поэтому в Чебурокет мы придерживаемся честного соотношения цены и качества.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Мне важно, чтобы хороший продукт был доступным. Чтобы человек мог попробовать его без лишних раздумий, получить удовольствие и захотеть вернуться.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Для меня Чебурокет-это больше, чем просто фастфуд.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Это моя попытка переосмыслить знакомый всем продукт и показать, каким современным он может быть.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Я хочу, чтобы за чебуреком приходили не потому, что «так было раньше», а потому что это вкусно, стильно и действительно хочется повторить.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Я не хотел менять сам чебурек.
         </p>
+
 
         <p class="story-highlight story-reveal">
           Я ХОТЕЛ ИЗМЕНИТЬ ОТНОШЕНИЕ К НЕМУ.
         </p>
 
-        <p class="story-reveal">
+
+        <p class="story-reveal story-normal">
           И чтобы новое поколение однажды сказало:
         </p>
+
 
         <p class="story-highlight story-reveal">
           «ЧЕБУРЕК? ЭТО ЖЕ ЧЕБУРОКЕТ».
         </p>
 
-        <p class="story-reveal">
+
+        <p class="story-reveal story-normal">
           А ещё мы возвращаем то, что многие уже успели забыть.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           В Чебурокете мы делаем пышки - те самые, советские, которые до сих пор любят в Петербурге и Москве: горячие, воздушные, с сахарной пудрой.
         </p>
 
-        <p class="story-reveal">
+        <p class="story-reveal story-normal">
           Для кого-то это вкус из детства, а для кого-то - вообще новое открытие. Например, в Краснодаре такой культуры пышек практически нет.
         </p>
+
 
         <p class="story-highlight story-reveal">
           МНЕ НРАВИТСЯ БРАТЬ ЗНАКОМЫЕ ПРОДУКТЫ ИЗ ПРОШЛОГО, КОТОРЫЕ ДЕЙСТВИТЕЛЬНО ЛЮБЯТ ЛЮДИ, И ДАВАТЬ ИМ НОВУЮ ЖИЗНЬ В СОВРЕМЕННОМ ФОРМАТЕ.
         </p>
+
 
       </div>
 
@@ -1996,7 +2091,9 @@ button{
   </section>
 
 
-  <!-- CONTACTS -->
+  <!-- ================================
+       CONTACTS
+  ================================ -->
 
   <section id="contacts">
 
@@ -2071,7 +2168,9 @@ button{
 </div>
 
 
-<!-- MUSIC -->
+<!-- ================================
+     MUSIC
+================================ -->
 
 <audio id="music" loop>
 
@@ -2084,6 +2183,10 @@ button{
 
 
 <script>
+
+/* ================================
+   ELEMENTS
+================================ */
 
 const music =
   document.getElementById('music');
@@ -2104,7 +2207,36 @@ const backgroundVideo =
   document.getElementById('backgroundVideo');
 
 
-/* YANDEX ORDER */
+/* ================================
+   BACKGROUND VIDEO
+================================ */
+
+backgroundVideo.muted = true;
+backgroundVideo.playsInline = true;
+
+function startBackgroundVideo(){
+
+  backgroundVideo.play().catch(()=>{});
+
+}
+
+if(document.readyState === 'loading'){
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    startBackgroundVideo
+  );
+
+}else{
+
+  startBackgroundVideo();
+
+}
+
+
+/* ================================
+   YANDEX ORDER
+================================ */
 
 function goToOrder(){
 
@@ -2114,7 +2246,9 @@ function goToOrder(){
 }
 
 
-/* ENTER SITE */
+/* ================================
+   ENTER SITE
+================================ */
 
 function enterSite(){
 
@@ -2156,13 +2290,15 @@ function enterSite(){
 }
 
 
-/* MUSIC */
+/* ================================
+   MUSIC
+================================ */
 
 function toggleMusic(){
 
   if(music.paused){
 
-    music.play();
+    music.play().catch(()=>{});
 
     musicBtn.textContent = '♪';
 
@@ -2177,7 +2313,9 @@ function toggleMusic(){
 }
 
 
-/* CHEBUREK SELECT */
+/* ================================
+   CHEBUREK SELECT
+================================ */
 
 function selectFood(
   el,
@@ -2236,7 +2374,9 @@ function selectFood(
 }
 
 
-/* CATEGORY */
+/* ================================
+   CATEGORY
+================================ */
 
 function showCategory(
   el,
@@ -2301,7 +2441,7 @@ function showCategory(
               6 шт. — 199 ₽
             </div>
 
-             <div class="donut-price">
+            <div class="donut-price">
               12 шт. — 359 ₽
             </div>
 
@@ -2437,7 +2577,9 @@ function showCategory(
 }
 
 
-/* STORY WORD ANIMATION */
+/* ================================
+   STORY WORD ANIMATION
+================================ */
 
 function prepareStoryAnimation(){
 
@@ -2446,6 +2588,18 @@ function prepareStoryAnimation(){
 
 
   blocks.forEach(block=>{
+
+    /* ЖЁСТКО НАЗНАЧАЕМ ШРИФТ ОБЫЧНОМУ ТЕКСТУ */
+    if(!block.classList.contains('story-highlight')){
+
+      block.style.fontFamily =
+        "'MontserratLocal', Arial, sans-serif";
+
+      block.style.fontWeight =
+        "400";
+
+    }
+
 
     const walker =
       document.createTreeWalker(
@@ -2559,7 +2713,24 @@ function prepareStoryAnimation(){
 }
 
 
-prepareStoryAnimation();
+/* ================================
+   WAIT FOR LOCAL FONT
+================================ */
+
+if(
+  document.fonts &&
+  document.fonts.ready
+){
+
+  document.fonts.ready.then(()=>{
+    prepareStoryAnimation();
+  });
+
+}else{
+
+  prepareStoryAnimation();
+
+}
 
 </script>
 
